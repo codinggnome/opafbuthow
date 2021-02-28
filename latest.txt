@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.36"
+		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.6.1"
 	}
 
 	lobby
