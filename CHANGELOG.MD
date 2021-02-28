@@ -1,4 +1,3 @@
-```
 # Changelog
 - Notable changed from the original version of this mode
 
@@ -100,6 +99,6 @@
 
 
 ## [1.2.0]
-Kychahh#2229 original version. This repo was "forked" from it
+The original version. This repo was "forked" from it https://workshop.codes/REEH3 
 ```
 
