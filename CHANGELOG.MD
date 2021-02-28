@@ -1,5 +1,5 @@
 # Changelog
-- Notable changed from the original version of this mode
+- Notable changes from the original version of this mode
 
 ## [1.6.1] 2/26/2021
 ### Added
