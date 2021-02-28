@@ -1,0 +1,4271 @@
+settings
+{
+	main
+	{
+		Description: "You are OP... But in what way? This mode lets you play a random hero with unique enhanced abilities until you get killed. Then it's time to discover the next.    Some heroes can reach a level 2 version of themselves by completing an objective. Objectives are shown in purple text in the top left corner, alongside with other info about that hero.    Keep an eye out for red warnings at the top of the screen.    This mode might not seem fair, but each hero has a counter; a w"
+	}
+
+	lobby
+	{
+		Allow Players Who Are In Queue: Yes
+		Map Rotation: After A Game
+		Max FFA Players: 10
+		Max Spectators: 8
+		Return To Lobby: Never
+	}
+
+	modes
+	{
+		Deathmatch
+		{
+			Game Length In Minutes: 15
+			Score To Win: 35
+			Self Initiated Respawn: Off
+
+			enabled maps
+			{
+				Blizzard World
+				Château Guillard
+				Dorado
+				Eichenwalde
+				Hanamura
+				Hollywood
+				King's Row
+				Paris
+				Petra
+			}
+		}
+
+		disabled Team Deathmatch
+		{
+			Game Length In Minutes: 15
+		}
+
+		General
+		{
+			Game Mode Start: Immediately
+			Hero Limit: Off
+			Respawn As Random Hero: On
+			Respawn Time Scalar: 25%
+			Spawn Health Packs: Enabled
+		}
+	}
+
+	heroes
+	{
+		General
+		{
+			Ana
+			{
+				Biotic Grenade Cooldown Time: 35%
+				Movement Speed: 200%
+				No Ammunition Requirement: On
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Sleep Dart Cooldown Time: 70%
+			}
+
+			Ashe
+			{
+				Coach Gun Cooldown Time: 50%
+				Coach Gun Knockback Scalar Enemy: 300%
+				Coach Gun Knockback Scalar Self: 300%
+				Damage Dealt: 500%
+				Dynamite Cooldown Time: 5%
+				Dynamite Fuse Time Scalar: 10%
+				Health: 10%
+				Movement Speed: 300%
+				Primary Fire: Off
+				Projectile Speed: 200%
+				Quick Melee: Off
+				Ultimate Generation - Combat B.O.B.: 0%
+				Ultimate Generation - Passive B.O.B.: 0%
+				Ultimate Generation B.O.B.: 10%
+			}
+
+			Baptiste
+			{
+				Damage Dealt: 250%
+				Health: 500%
+				Immortality Field Cooldown Time: 300%
+				Infinite Ultimate Duration: On
+				Movement Gravity: 60%
+				Movement Speed: 120%
+				No Ammunition Requirement: On
+				Quick Melee: Off
+				Regenerative Burst: Off
+				Secondary Fire: Off
+				Ultimate Generation - Combat Amplification Matrix: 200%
+				Ultimate Generation - Passive Amplification Matrix: 200%
+				Ultimate Generation Amplification Matrix: 200%
+			}
+
+			Bastion
+			{
+				Configuration: Tank Weapon Knockback Scalar: 400%
+				Damage Dealt: 500%
+				Healing Received: 80%
+				Health: 400%
+				Infinite Ultimate Duration: On
+				Movement Speed: 50%
+				Projectile Speed: 300%
+				Quick Melee: Off
+				Self-Repair: Off
+				Ultimate Duration: 500%
+				Ultimate Generation - Combat Configuration: Tank: 0%
+				Ultimate Generation - Passive Configuration: Tank: 0%
+				Ultimate Generation Configuration: Tank: 10%
+			}
+
+			Brigitte
+			{
+				Barrier Shield Recharge Rate: 200%
+				Damage Dealt: 250%
+				Movement Speed: 200%
+				Quick Melee: Off
+				Repair Pack: Off
+				Shield Bash Cooldown Time: 0%
+				Shield Bash Knockback Scalar: 300%
+				Ultimate Generation - Combat Rally: 200%
+				Ultimate Generation - Passive Rally: 200%
+				Ultimate Generation Rally: 200%
+				Whip Shot Cooldown Time: 0%
+				Whip Shot Knockback Scalar: 300%
+			}
+
+			D.Va
+			{
+				Boosters Cooldown Time: 0%
+				Boosters Knockback Scalar: 400%
+				Call Mech Knockback Scalar: 400%
+				Damage Dealt: 500%
+				Defense Matrix Maximum Time: 500%
+				Defense Matrix Recharge Rate: 0%
+				Health: 10%
+				Jump Vertical Speed: 200%
+				Micro Missiles Cooldown Time: 0%
+				Movement Speed: 200%
+				Projectile Speed: 10%
+				Quick Melee: Off
+				Self Destruct Knockback Scalar: 200%
+				Spawn With Ultimate Ready: On
+				Ultimate Generation - Combat Self-Destruct: 500%
+				Ultimate Generation - Passive Self-Destruct: 500%
+				Ultimate Generation Self-Destruct: 500%
+			}
+
+			Doomfist
+			{
+				Damage Dealt: 500%
+				Health: 40%
+				Jump Vertical Speed: 200%
+				Meteor Strike Knockback Scalar: 300%
+				Movement Speed: 200%
+				Quick Melee: Off
+				Rising Uppercut Cooldown Time: 0%
+				Rocket Punch Cooldown Time: 0%
+				Seismic Slam Cooldown Time: 0%
+				Spawn With Ultimate Ready: On
+			}
+
+			Echo
+			{
+				Damage Dealt: 300%
+				Flight: Off
+				Focusing Beam: Off
+				Health: 160%
+				Jump Vertical Speed: 330%
+				Movement Gravity: 90%
+				No Ammunition Requirement: On
+				Primary Fire: Off
+				Projectile Speed: 170%
+				Quick Melee: Off
+				Sticky Bombs Cooldown Time: 0%
+				Ultimate Ability Duplicate: Off
+			}
+
+			Genji
+			{
+				Damage Dealt: 250%
+				Deflect Cooldown Time: 40%
+				Health: 40%
+				Jump Vertical Speed: 200%
+				Movement Speed: 160%
+				No Ammunition Requirement: On
+				Projectile Speed: 30%
+				Quick Melee: Off
+				Swift Strike Cooldown Time: 0%
+				Ultimate Duration: 500%
+				Ultimate Generation - Combat Dragonblade: 300%
+				Ultimate Generation - Passive Dragonblade: 200%
+				Ultimate Generation Dragonblade: 200%
+			}
+
+			Hanzo
+			{
+				Damage Dealt: 500%
+				Health: 10%
+				Lunge Cooldown Time: 8%
+				Lunge Distance Scalar: 200%
+				Quick Melee: Off
+				Sonic Arrow: Off
+				Storm Arrows Cooldown Time: 30%
+				Storm Arrows Quantity: 12
+				Ultimate Generation - Combat Dragonstrike: 400%
+				Ultimate Generation - Passive Dragonstrike: 300%
+				Ultimate Generation Dragonstrike: 300%
+			}
+
+			Junkrat
+			{
+				Concussion Mine Cooldown Time: 50%
+				Concussion Mine Knockback Scalar: 200%
+				Damage Dealt: 500%
+				Frag Launcher Knockback Scalar: 400%
+				Infinite Ultimate Duration: On
+				No Ammunition Requirement: On
+				Projectile Speed: 325%
+				Quick Melee: Off
+				Spawn With Ultimate Ready: On
+				Steel Trap Cooldown Time: 30%
+				Ultimate Duration: 160%
+			}
+
+			Lúcio
+			{
+				Amp It Up Cooldown Time: 5%
+				Crossfade: Off
+				Healing Received: 10%
+				Health: 10%
+				Movement Gravity: 80%
+				Movement Speed: 300%
+				No Ammunition Requirement: On
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Soundwave Cooldown Time: 5%
+				Soundwave Knockback Scalar: 300%
+				Ultimate Generation - Combat Sound Barrier: 250%
+				Ultimate Generation - Passive Sound Barrier: 300%
+				Ultimate Generation Sound Barrier: 200%
+			}
+
+			McCree
+			{
+				Combat Roll Cooldown Time: 0%
+				Damage Dealt: 220%
+				Flashbang Cooldown Time: 85%
+				Health: 150%
+				Jump Vertical Speed: 200%
+				No Ammunition Requirement: On
+				Quick Melee: Off
+			}
+
+			Mei
+			{
+				Ammunition Clip Size Scalar: 300%
+				Blizzard Freeze Minimum: 35%
+				Blizzard Freeze Rate Scalar: 500%
+				Cryo-Freeze Cooldown Time: 50%
+				Freeze Stacking: On
+				Health: 90%
+				Ice Wall Cooldown Time: 0%
+				Quick Melee: Off
+				Spawn With Ultimate Ready: On
+				Ultimate Generation - Combat Blizzard: 400%
+				Ultimate Generation - Passive Blizzard: 200%
+				Ultimate Generation Blizzard: 200%
+				Weapon Freeze Duration Scalar: 40%
+				Weapon Freeze Minimum: 20%
+			}
+
+			Mercy
+			{
+				Damage Dealt: 140%
+				Guardian Angel: Off
+				Healing Dealt: 300%
+				Healing Received: 300%
+				Health: 110%
+				Jump Vertical Speed: 150%
+				Movement Gravity: 40%
+				No Ammunition Requirement: On
+				Projectile Speed: 250%
+				Quick Melee: Off
+				Resurrect: Off
+				Ultimate Generation - Combat Valkyrie: 180%
+				Ultimate Generation - Passive Valkyrie: 160%
+			}
+
+			Moira
+			{
+				Biotic Orb Cooldown Time: 0%
+				Biotic Orb Max Damage Scalar: 200%
+				Damage Dealt: 50%
+				Fade: Off
+				Healing Dealt: 30%
+				Healing Received: 30%
+				Health: 30%
+				Infinite Ultimate Duration: On
+				Primary Fire: Off
+				Projectile Speed: 20%
+				Quick Melee: Off
+				Secondary Fire: Off
+				Ultimate Ability Coalescence: Off
+				Ultimate Duration: 200%
+			}
+
+			Orisa
+			{
+				Fortify: Off
+				Halt! Cooldown Time: 3%
+				Healing Received: 120%
+				Health: 500%
+				Jump Vertical Speed: 25%
+				Movement Gravity: 400%
+				No Ammunition Requirement: On
+				Projectile Speed: 500%
+				Protective Barrier Cooldown Time: 40%
+				Quick Melee: Off
+				Ultimate Generation - Combat Supercharger: 500%
+				Ultimate Generation - Passive Supercharger: 300%
+				Ultimate Generation Supercharger: 300%
+			}
+
+			Pharah
+			{
+				Concussive Blast Cooldown Time: 0%
+				Concussive Blast Knockback Scalar: 300%
+				Damage Dealt: 250%
+				Health: 10%
+				Hover Jets Unlimited Fuel: On
+				Jump Jet Acceleration Scalar: 300%
+				Jump Jet Cooldown Time: 200%
+				Jump Vertical Speed: 200%
+				Movement Speed: 200%
+				No Ammunition Requirement: On
+				Projectile Speed: 500%
+				Quick Melee: Off
+			}
+
+			Reaper
+			{
+				Damage Dealt: 500%
+				Health: 13%
+				Movement Gravity: 70%
+				Movement Speed: 250%
+				Quick Melee: Off
+				Shadow Step Cooldown Time: 0%
+				Spawn With Ultimate Ready: On
+				Ultimate Generation - Combat Death Blossom: 300%
+				Ultimate Generation - Passive Death Blossom: 300%
+				Ultimate Generation Death Blossom: 410%
+				Wraith Form Cooldown Time: 20%
+			}
+
+			Reinhardt
+			{
+				Barrier Field Cooldown Time: 30%
+				Charge Cooldown Time: 0%
+				Charge Knockback Scalar: 300%
+				Damage Dealt: 500%
+				Fire Strike Cooldown Time: 10%
+				Healing Received: 10%
+				Health: 230%
+				Movement Speed: 150%
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Rocket Hammer Knockback Scalar: 400%
+				Ultimate Generation - Combat Earthshatter: 250%
+				Ultimate Generation - Passive Earthshatter: 250%
+				Ultimate Generation Earthshatter: 250%
+			}
+
+			Roadhog
+			{
+				Damage Dealt: 200%
+				Health: 190%
+				Movement Speed: 200%
+				No Ammunition Requirement: On
+				Projectile Speed: 300%
+				Quick Melee: Off
+				Spawn With Ultimate Ready: On
+				Take a Breather: Off
+				Ultimate Generation Whole Hog: 110%
+				Whole Hog Knockback Scalar: 300%
+			}
+
+			Sigma
+			{
+				Accretion Cooldown Time: 75%
+				Accretion Knockback Scalar: 200%
+				Damage Dealt: 500%
+				Experimental Barrier Cooldown Time: 400%
+				Experimental Barrier Recharge Rate: 20%
+				Healing Received: 10%
+				Health: 400%
+				Jump Vertical Speed: 90%
+				Kinetic Grasp: Off
+				Movement Speed: 50%
+				Projectile Speed: 200%
+				Quick Melee: Off
+				Ultimate Generation - Combat Gravitic Flux: 140%
+			}
+
+			Soldier: 76
+			{
+				Ammunition Clip Size Scalar: 500%
+				Biotic Field: Off
+				Damage Dealt: 250%
+				Healing Dealt: 70%
+				Healing Received: 70%
+				Health: 200%
+				Helix Rockets Cooldown Time: 10%
+				Helix Rockets Knockback Scalar: 400%
+				Infinite Ultimate Duration: On
+				Movement Speed: 155%
+				Projectile Speed: 50%
+				Quick Melee: Off
+				Ultimate Duration: 500%
+			}
+
+			Sombra
+			{
+				Damage Dealt: 350%
+				Hack Cooldown Time: 0%
+				Health: 40%
+				Movement Speed: 200%
+				No Ammunition Requirement: On
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Stealth Cooldown Time: 0%
+				Translocator Cooldown Time: 0%
+				Ultimate Generation - Combat EMP: 200%
+				Ultimate Generation - Passive EMP: 200%
+			}
+
+			Symmetra
+			{
+				Damage Dealt: 310%
+				Health: 60%
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Sentry Turret Cooldown Time: 0%
+				Ultimate Generation - Combat Photon Barrier: 300%
+				Ultimate Generation - Passive Photon Barrier: 200%
+				Ultimate Generation Photon Barrier: 150%
+			}
+
+			Torbjörn
+			{
+				Damage Dealt: 200%
+				Deploy Turret Cooldown Time: 0%
+				Health: 150%
+				Infinite Ultimate Duration: On
+				Overload Cooldown Time: 50%
+				Projectile Speed: 225%
+				Quick Melee: Off
+				Ultimate Duration: 200%
+				Ultimate Generation - Combat Molten Core: 250%
+				Ultimate Generation - Passive Molten Core: 180%
+			}
+
+			Tracer
+			{
+				Blink Cooldown Time: 0%
+				Damage Dealt: 400%
+				Damage Received: 400%
+				Healing Received: 25%
+				Movement Speed: 300%
+				No Ammunition Requirement: On
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Recall Cooldown Time: 30%
+				Ultimate Generation - Passive Pulse Bomb: 500%
+			}
+
+			Widowmaker
+			{
+				Damage Dealt: 500%
+				Grappling Hook Cooldown Time: 0%
+				Health: 10%
+				Jump Vertical Speed: 200%
+				Movement Speed: 115%
+				No Automatic Fire: On
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Ultimate Duration: 200%
+				Ultimate Generation - Combat Infra-Sight: 200%
+				Ultimate Generation - Passive Infra-Sight: 200%
+				Ultimate Generation Infra-Sight: 400%
+				Venom Mine Cooldown Time: 0%
+			}
+
+			Winston
+			{
+				Barrier Projector Cooldown Time: 50%
+				Damage Dealt: 200%
+				Damage Received: 200%
+				Health: 250%
+				Jump Pack Cooldown Time: 0%
+				Jump Pack Knockback Scalar: 400%
+				Jump Vertical Speed: 220%
+				No Ammunition Requirement: On
+				Primal Rage Melee Knockback Scalar: 300%
+				Quick Melee: Off
+				Ultimate Generation - Combat Primal Rage: 150%
+				Ultimate Generation - Passive Primal Rage: 150%
+				Ultimate Generation Primal Rage: 150%
+			}
+
+			Wrecking Ball
+			{
+				Adaptive Shield: Off
+				Damage Dealt: 250%
+				Damage Received: 160%
+				Grappling Claw Cooldown Time: 0%
+				Grappling Claw Knockback Scalar: 400%
+				Health: 70%
+				Infinite Ultimate Duration: On
+				Jump Vertical Speed: 500%
+				Minefield Knockback Scalar: 400%
+				Movement Gravity: 35%
+				Movement Speed: 170%
+				Piledriver Cooldown Time: 20%
+				Primary Fire: Off
+				Quick Melee: Off
+				Roll Always Active: On
+				Ultimate Duration: 500%
+				Ultimate Generation - Passive Minefield: 0%
+				Ultimate Generation Minefield: 300%
+			}
+
+			Zarya
+			{
+				Ammunition Clip Size Scalar: 500%
+				Damage Dealt: 360%
+				Healing Received: 10%
+				Health: 350%
+				Movement Speed: 60%
+				No Ammunition Requirement: On
+				Particle Cannon Secondary Knockback Scalar: 400%
+				Projected Barrier: Off
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Ultimate Generation - Combat Graviton Surge: 110%
+				Ultimate Generation - Passive Graviton Surge: 80%
+				Ultimate Generation Graviton Surge: 80%
+			}
+
+			Zenyatta
+			{
+				Ammunition Clip Size Scalar: 25%
+				Healing Dealt: 90%
+				Healing Received: 10%
+				Health: 60%
+				Jump Vertical Speed: 300%
+				Movement Gravity: 25%
+				Orb of Harmony: Off
+				Projectile Speed: 500%
+				Quick Melee: Off
+				Secondary Fire: Off
+				Ultimate Generation - Combat Transcendence: 200%
+			}
+		}
+	}
+}
+
+variables
+{
+	global:
+		0: Lava_Torbjorn_Activation
+		1: Lava_HUD_Warning
+		2: Lava_HUD_Warning_Timer
+		3: Zarya_Ultimate_HUD
+		4: Lava_Position
+		5: Lava_Sizes
+		6: Zarya_Ultimate_User
+		8: Total_Level2_Bastion
+		9: Lava_Rising_Array_Looper
+		10: Total_Level2_Soldier76
+		11: Total_Level2_Moira
+		12: Total_Level2_Roadhog
+		13: Total_Level2_Ana
+		15: Lucio_Ultimate
+		16: Zenyatta_Mind_Control
+		17: Hook_Timer
+		18: Zarya_Ultimate_Duration
+		20: Speed_Force_Duration
+		21: Speed_Force_Timer
+		22: Speed_Force_Divider
+
+	player:
+		0: Soldier76_Power
+		1: Bastion_Power
+		2: HUD_Text_Start_Game_1
+		4: Soldier76_Level2_Icon
+		5: Echo_Immunity
+		6: Bastion_Level2_Icon
+		7: Roadhog_Level2_Icon
+		8: Orisa_Power_Icon
+		9: Moira_Power
+		10: Moira_Level2_Icon
+		11: Lava_Activated_Player
+		12: Lava_Protection_Text
+		14: Orisa_Power
+		15: Orisa_Kill_Warning_HUD
+		16: Tracer_Speed_Force
+		17: Roadhog_Power
+		18: Roadhog_Hook_Timer
+		19: Tracer_Power
+		21: Moira_Explanation
+		22: Doomfist_HUD_Text_1
+		23: Roadhog_Hook
+		24: HUD_Text_Ana_Poison_Effect
+		25: HUD_Text_Ana_Poison_Warning
+		26: Mercy_Ultimate
+		27: HUD_Text_1
+		28: HUD_Text_2
+		29: HUD_Text_Warning
+		30: Genji_Ultimate_Effect
+		31: Hanzo_Ultimate
+		32: Doomfist_HUD_Text_2
+		33: Bastion_Ultimate_Effect
+		34: Dva_HUD_Text_1
+		35: Dva_HUD_Text_2
+		36: Zenyatta_Power
+		38: Ana_Level2
+		40: Ana_Level2_Icon
+		41: Ana_Level2_Warning_HUD
+		42: Soldier76_Level2_Warning_HUD
+		43: Bastion_Level2_Warning_HUD
+		44: Roadhog_Level2_Warning_HUD
+		45: Moira_Level2_Warning_HUD
+		49: Ashe_Immunity
+		50: Ana_Immunity
+		51: Zarya_Ultimate_Warning_HUD
+		52: Orisa_Level2_Ultimate_HUD
+		53: Widowmaker_ThirdEye
+		54: Zenyatta_MindControl_Warning_HUD
+		55: Orisa_Level2
+		56: Orisa_Level2_Warning_HUD
+		57: Orisa_Level2_Icon
+		58: Orisa_Power_Level2
+		59: Roadhog_Level2
+}
+
+subroutines
+{
+	0: Player_Reset
+}
+
+rule("General | Bug Fix")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	actions
+	{
+		Allow Button(Event Player, Button(Interact));
+		Set Projectile Speed(Event Player, 100);
+		Wait(1, Ignore Condition);
+		Loop;
+	}
+}
+
+rule("General | Global Setup")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Global.Lava_Position = Empty Array;
+		Global.Lava_Sizes = Empty Array;
+		Global.Z = Empty Array;
+		Global.Hook_Timer = 7;
+		Global.Zarya_Ultimate_Duration = 10;
+		Global.Speed_Force_Duration = 10;
+		Global.Speed_Force_Divider = 5;
+	}
+}
+
+rule("General | Player Reset at Death")
+{
+	event
+	{
+		Player Died;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+		Is Dead(Event Player) == True;
+	}
+
+	actions
+	{
+		If(Event Player == Global.Zarya_Ultimate_User);
+			Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
+			Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
+			Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
+			Global.Zarya_Ultimate_User = Null;
+			Destroy HUD Text(Global.Zarya_Ultimate_HUD);
+		End;
+		Call Subroutine(Player_Reset);
+	}
+}
+
+rule("General | Subroutine | Player Reset")
+{
+	event
+	{
+		Subroutine;
+		Player_Reset;
+	}
+
+	actions
+	{
+		Set Projectile Speed(Event Player, 100);
+		Set Max Health(Event Player, 100);
+		Set Damage Received(Event Player, 100);
+		Set Projectile Gravity(Event Player, 100);
+		Set Move Speed(Event Player, 100);
+		Set Damage Dealt(Event Player, 100);
+		Set Gravity(Event Player, 100);
+		Stop Holding Button(Event Player, Button(Primary Fire));
+		Allow Button(Event Player, Button(Interact));
+		Allow Button(Event Player, Button(Ultimate));
+		Allow Button(Event Player, Button(Jump));
+		Allow Button(Event Player, Button(Primary Fire));
+		Allow Button(Event Player, Button(Secondary Fire));
+		Allow Button(Event Player, Button(Ability 1));
+		Allow Button(Event Player, Button(Ability 2));
+		Set Invisible(Event Player, None);
+		Clear Status(Event Player, Frozen);
+		Clear Status(Event Player, Hacked);
+		Clear Status(Event Player, Rooted);
+		Clear Status(Event Player, Burning);
+		Clear Status(Event Player, Invincible);
+		Clear Status(Event Player, Unkillable);
+		Event Player.Orisa_Power = 0;
+		Event Player.Orisa_Power_Level2 = 0;
+		Event Player.Orisa_Level2_Ultimate_HUD = 0;
+		Event Player.Lava_Activated_Player = 0;
+		Event Player.Tracer_Speed_Force = 0;
+		Event Player.Tracer_Speed_Force = False;
+		Destroy Icon(Last Created Entity);
+		Destroy Icon(Event Player.Orisa_Power_Icon);
+		Destroy Effect(Last Created Entity);
+		Destroy Effect(Event Player.Genji_Ultimate_Effect);
+		Destroy Effect(Event Player.Bastion_Ultimate_Effect);
+		Stop Damage Modification(Event Player.Ana_Immunity);
+		Stop Damage Modification(Event Player.Ashe_Immunity);
+		Stop Damage Modification(Event Player.Echo_Immunity);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+		Destroy HUD Text(Event Player.Orisa_Kill_Warning_HUD);
+		Destroy HUD Text(Event Player.HUD_Text_Ana_Poison_Effect);
+		Destroy HUD Text(Event Player.HUD_Text_Ana_Poison_Warning);
+		Destroy HUD Text(Event Player.Lava_Protection_Text);
+		Destroy HUD Text(Event Player.Moira_Explanation);
+		Destroy HUD Text(Event Player.Doomfist_HUD_Text_1);
+		Destroy HUD Text(Event Player.Doomfist_HUD_Text_2);
+		Destroy HUD Text(Event Player.Dva_HUD_Text_1);
+		Destroy HUD Text(Event Player.Dva_HUD_Text_2);
+		Destroy HUD Text(Event Player.Ana_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.Orisa_Level2_Ultimate_HUD);
+		Destroy HUD Text(Event Player.Orisa_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.Soldier76_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.Bastion_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.Roadhog_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.Moira_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.Ana_Level2_Warning_HUD);
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Destroy HUD Text(Event Player.HUD_Text_Ana_Poison_Warning);
+		Wait(3, Ignore Condition);
+		Set Player Allowed Heroes(Event Player, Random Value In Array(All Heroes));
+	}
+}
+
+rule("General | HUD Text Level 2's")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Global.Speed_Force_Timer = 0;
+		Global.Total_Level2_Ana = 0;
+		Global.Total_Level2_Bastion = 0;
+		Global.Total_Level2_Soldier76 = 0;
+		Global.Total_Level2_Moira = 0;
+		Global.Total_Level2_Roadhog = 0;
+		Create HUD Text(All Players(All Teams), Custom String("Total Level 2:"), Null, Null, Right, 1, Color(Orange), Color(White), Color(
+			White), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Bastion)), Global.Total_Level2_Bastion, Null, Right, 2, Color(
+			Orange), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Roadhog)), Global.Total_Level2_Roadhog, Null, Right, 2, Color(
+			Orange), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Soldier: 76)), Global.Total_Level2_Soldier76, Null, Right, 2, Color(
+			Orange), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Moira)), Global.Total_Level2_Moira, Null, Right, 2, Color(Orange),
+			Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Ana)), Global.Total_Level2_Ana, Null, Right, 2, Color(Orange), Color(
+			White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Orisa)), Global.Speed_Force_Timer, Null, Right, 2, Color(Orange),
+			Color(White), Color(White), Visible To and String, Default Visibility);
+	}
+}
+
+rule("General | Lava Spawning Player 6 Seconds Protected")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Create HUD Text(Event Player, Custom String("Protected from lava for 6 seconds"), Event Player.Lava_Activated_Player, Null, Top, 2,
+			Color(Orange), Color(Orange), Color(White), Visible To and String, Default Visibility);
+		Event Player.Lava_Protection_Text = Last Text ID;
+		Event Player.Lava_Activated_Player = 6;
+		Wait(6, Ignore Condition);
+		Destroy HUD Text(Event Player.Lava_Protection_Text);
+	}
+}
+
+rule("General | Lava Spawning Player 6 Seconds Protected | Timer")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.Lava_Activated_Player > 0;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Lava_Activated_Player -= 1;
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}
+
+rule("Doomfist")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Doomfist;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Use your fist for everything", Null, Hero Icon String(Hero(Doomfist))), Null,
+			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Doomfist | Ultimate ON")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Doomfist;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Allow Button(Event Player, Button(Primary Fire));
+	}
+}
+
+rule("... Doomfist | Ultimate OFF")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Doomfist;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Disallow Button(Event Player, Button(Primary Fire));
+	}
+}
+
+rule("D.Va")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		D.Va;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Low health, Big Damage, Spam Ultimate", Null, Hero Icon String(Hero(D.Va))), Null,
+			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("Symmetra")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Symmetra;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Your wall cannot be passed by regular enemies", Null, Hero Icon String(Hero(
+			Symmetra))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Fly little robots... FLY!"), Custom String(""), Null, Left, 2, Color(Blue), Color(
+			White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Symmetra | Ultimate 1")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Symmetra;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Symmetra);
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Roadhog_Power = Vector(X Component Of(Position Of(Event Player)), 0, Z Component Of(Position Of(Event Player)));
+		Event Player.Roadhog_Hook_Timer = Facing Direction Of(Event Player);
+	}
+}
+
+rule("... Symmetra | Ultimate 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Symmetra;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Symmetra);
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(0.050, Ignore Condition);
+		Apply Impulse(Filtered Array(All Players(All Teams), (X Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer)
+			- X Component Of(Event Player.Roadhog_Power)) * (Z Component Of(Position Of(Current Array Element)) - Z Component Of(
+			Event Player.Roadhog_Power)) - (X Component Of(Position Of(Current Array Element)) - X Component Of(
+			Event Player.Roadhog_Power)) * (Z Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer) - Z Component Of(
+			Event Player.Roadhog_Power)) < 1 && (X Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer)
+			- X Component Of(Event Player.Roadhog_Power)) * (Z Component Of(Position Of(Current Array Element)) - Z Component Of(
+			Event Player.Roadhog_Power)) - (X Component Of(Position Of(Current Array Element)) - X Component Of(
+			Event Player.Roadhog_Power)) * (Z Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer) - Z Component Of(
+			Event Player.Roadhog_Power)) > 0), Vector(Z Component Of(Event Player.Roadhog_Hook_Timer) * -1, 0, X Component Of(
+			Event Player.Roadhog_Hook_Timer) * 1), 14, To World, Cancel Contrary Motion);
+		Apply Impulse(Filtered Array(All Players(All Teams), (X Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer)
+			- X Component Of(Event Player.Roadhog_Power)) * (Z Component Of(Position Of(Current Array Element)) - Z Component Of(
+			Event Player.Roadhog_Power)) - (X Component Of(Position Of(Current Array Element)) - X Component Of(
+			Event Player.Roadhog_Power)) * (Z Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer) - Z Component Of(
+			Event Player.Roadhog_Power)) < 0 && (X Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer)
+			- X Component Of(Event Player.Roadhog_Power)) * (Z Component Of(Position Of(Current Array Element)) - Z Component Of(
+			Event Player.Roadhog_Power)) - (X Component Of(Position Of(Current Array Element)) - X Component Of(
+			Event Player.Roadhog_Power)) * (Z Component Of(Event Player.Roadhog_Power + Event Player.Roadhog_Hook_Timer) - Z Component Of(
+			Event Player.Roadhog_Power)) > -1), Vector(Z Component Of(Event Player.Roadhog_Hook_Timer) * 1, 0, X Component Of(
+			Event Player.Roadhog_Hook_Timer) * -1), 14, To World, Cancel Contrary Motion);
+		Loop If Condition Is True;
+	}
+}
+
+rule("... Symmetra | Ultimate 3")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Symmetra;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Symmetra);
+		Ultimate Charge Percent(Event Player) == 100;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Is Button Held(Event Player, Button(Primary Fire)) == False;
+	}
+
+	actions
+	{
+		Disallow Button(Event Player, Button(Primary Fire));
+		Allow Button(Event Player, Button(Ultimate));
+		Press Button(Event Player, Button(Ultimate));
+		Wait(0.018, Ignore Condition);
+		Disallow Button(Event Player, Button(Ultimate));
+		Wait(0.080, Ignore Condition);
+		Allow Button(Event Player, Button(Ultimate));
+		Press Button(Event Player, Button(Ultimate));
+		Wait(0.018, Ignore Condition);
+		Disallow Button(Event Player, Button(Ultimate));
+		Wait(0.080, Ignore Condition);
+		Allow Button(Event Player, Button(Primary Fire));
+		Press Button(Event Player, Button(Primary Fire));
+	}
+}
+
+rule("Hanzo")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Hanzo;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Spam jump for air jumping", Null, Hero Icon String(Hero(Hanzo))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Hanzo | Ultimate Spam")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Hanzo;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Hanzo);
+		Is Using Ultimate(Event Player) == True;
+		Event Player.HUD_Text_Ana_Poison_Warning != True;
+	}
+
+	actions
+	{
+		Big Message(Event Player, Custom String("Dragon!"));
+		Event Player.Hanzo_Ultimate += 2.200;
+		Event Player.Moira_Explanation = 100;
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(1.200, Ignore Condition);
+		Set Status(Event Player, Null, Knocked Down, 0.001);
+		Wait(0.010, Ignore Condition);
+		Loop If(Event Player.Hanzo_Ultimate < 10);
+		Event Player.Moira_Explanation = 0;
+		Event Player.Hanzo_Ultimate = 0;
+		Big Message(Event Player, Custom String("That was the Dragon Festival!"));
+	}
+}
+
+rule("Mercy")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Mercy;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Fast healing", Null, Hero Icon String(Hero(Mercy))), Null, Null, Left, 1, Color(
+			White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Ultimate = Become A Burning Sun"), Custom String(""), Null, Left, 2, Color(Blue),
+			Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Mercy | Ultimate Warning")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Mercy;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Hide from {0}'s Sun! She cannot be killed!", Event Player,
+			Hero Icon String(Hero(Mercy))), Custom String(""), Null, Top, 1, Color(Red), Color(Red), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Wait(16, Ignore Condition);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+	}
+}
+
+rule("... Mercy | Ultimate Becomes Burning Sun")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Mercy;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Mercy);
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Move Speed(Event Player, 0);
+		Set Status(Event Player, Event Player, Invincible, 9999);
+		Event Player.Mercy_Ultimate = Players Within Radius(Position Of(Event Player), 150, Opposite Team Of(Team Of(Event Player)),
+			Surfaces And Enemy Barriers);
+		Play Effect(All Players(All Teams), Bad Explosion, Color(Red), Position Of(Event Player) + Up * 1.200, 10);
+		Damage(Event Player.Mercy_Ultimate, Event Player, 5);
+		Set Status(Event Player.Mercy_Ultimate, Null, Burning, 1);
+		Wait(0.033, Ignore Condition);
+		Loop If Condition Is True;
+		Clear Status(Event Player, Invincible);
+		Event Player.Mercy_Ultimate = 0;
+		Set Move Speed(Event Player, 100);
+	}
+}
+
+rule("Moira | Base")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Moira_Power < 2000;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Starts weak, but stronger each second!", Null, Hero Icon String(Hero(Moira))),
+			Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Level 2 Objective: Reach 2000 Damaging Power"), Event Player.Moira_Power, Null, Left,
+			2, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("<- Moira's DMG done is equal to her Damaging Power"), Custom String(""), Null, Top, 2,
+			Color(Orange), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Event Player.Moira_Explanation = Last Text ID;
+		Wait(5, Ignore Condition);
+		Destroy HUD Text(Event Player.Moira_Explanation);
+	}
+}
+
+rule("... Moira | Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Moira_Power >= 2000;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Moira))), Event Player.Moira_Power, Null,
+			Left, 2, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Moira | Balls Different Speed | Base")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+		Is Using Ability 2(Event Player) == True;
+		Event Player.Moira_Power < 2000;
+	}
+
+	actions
+	{
+		Set Projectile Speed(All Players(All Teams), Random Integer(0, 300));
+	}
+}
+
+rule("... Moira | Balls Different Speed | Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+		Is Using Ability 2(Event Player) == True;
+		Event Player.Moira_Power >= 2000;
+	}
+
+	actions
+	{
+		Set Projectile Speed(All Players(All Teams), Random Integer(250, 500));
+	}
+}
+
+rule("... Moira | Moira Gets Stronger Over Time")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Moira_Power += 10;
+		Wait(1, Ignore Condition);
+		Set Damage Dealt(Event Player, Event Player.Moira_Power);
+		Loop If Condition Is True;
+	}
+}
+
+rule("... Moira | Objective 500")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Event Player.Moira_Power == 500;
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} is gaining in DMG Done each second. Don't let her live long!",
+			Event Player, Hero Icon String(Hero(Moira))), Custom String(""), Null, Top, 2, Color(Red), Color(Red), Color(White),
+			Visible To and String, Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Wait(5, Ignore Condition);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+	}
+}
+
+rule("... Moira | Objective 1000")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Event Player.Moira_Power == 1000;
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s DMG Done now above 1000! (level up at 2000)", Event Player,
+			Hero Icon String(Hero(Moira))), Custom String(""), Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Wait(5, Ignore Condition);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+	}
+}
+
+rule("... Moira | Objective 1500")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Event Player.Moira_Power == 1500;
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s DMG done is now 1500! (level up at 2000)", Event Player,
+			Hero Icon String(Hero(Moira))), Custom String(""), Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Wait(5, Ignore Condition);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+	}
+}
+
+rule("... Moira | Objective 2000")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Event Player.Moira_Power == 2000;
+	}
+
+	actions
+	{
+		Global.Total_Level2_Moira += 1;
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+		Create HUD Text(All Players(All Teams), Custom String("{1} Too late! {0}'s Moira is now level 2! Dmg hacks you for 3 sec",
+			Event Player, Hero Icon String(Hero(Moira))), Custom String(""), Null, Top, 2, Color(Turquoise), Color(Red), Color(White),
+			Visible To and String, Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Create HUD Text(Event Player, Hero Icon String(Hero(Moira)), Custom String("Level 2"), Null, Left, 3, Color(Purple), Color(Purple),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.Moira_Level2_Icon = Last Text ID;
+		Wait(5, Ignore Condition);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+	}
+}
+
+rule("... Moira | Damage Hacks")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Moira;
+	}
+
+	conditions
+	{
+		Event Player.Moira_Power > 2000;
+	}
+
+	actions
+	{
+		Set Status(Victim, Event Player, Hacked, 3);
+	}
+}
+
+rule("Sombra")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Sombra;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Ultimate hacks everyone", Null, Hero Icon String(Hero(Sombra))), Null, Null, Left,
+			1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("And reduces everyones ultimate charge to 0%"), Custom String(""), Null, Left, 2,
+			Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Sombra | The Ultimate Hack")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Sombra;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Sombra);
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), Custom String("{1} {0} hacked the system!", Event Player, Hero Icon String(Hero(Sombra))));
+		Set Ultimate Charge(All Living Players(All Teams), 0);
+		Set Status(All Living Players(All Teams), Null, Hacked, 5);
+		Clear Status(Event Player, Hacked);
+	}
+}
+
+rule("Ashe")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Ashe;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Unlimited Dynamite", Null, Hero Icon String(Hero(Ashe))), Null, Null, Left, 1,
+			Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Start Damage Modification(Event Player, Event Player, 0, None);
+		Event Player.Ashe_Immunity = Last Damage Modification ID;
+	}
+}
+
+rule("Sigma")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Sigma;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Invisible while crouching", Null, Hero Icon String(Hero(Sigma))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Ultimate = Control Gravity"), Custom String(""), Null, Left, 2, Color(Blue), Color(
+			White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Sigma | Crouching = Invisible")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Sigma;
+	}
+
+	conditions
+	{
+		Is Crouching(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Invisible(Event Player, Enemies);
+		Disallow Button(Event Player, Button(Primary Fire));
+		Disallow Button(Event Player, Button(Secondary Fire));
+		Disallow Button(Event Player, Button(Ability 1));
+		Disallow Button(Event Player, Button(Ability 2));
+		Disallow Button(Event Player, Button(Ultimate));
+	}
+}
+
+rule("... Sigma | Not Crouching = Visible")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Sigma;
+	}
+
+	conditions
+	{
+		Is Crouching(Event Player) == False;
+	}
+
+	actions
+	{
+		Set Invisible(Event Player, None);
+		Allow Button(Event Player, Button(Primary Fire));
+		Allow Button(Event Player, Button(Secondary Fire));
+		Allow Button(Event Player, Button(Ability 1));
+		Allow Button(Event Player, Button(Ability 2));
+		Allow Button(Event Player, Button(Ultimate));
+	}
+}
+
+rule("... Sigma | Sigma Controls Gravity Now!")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Sigma;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} controls gravity! Pushback at the end!", Event Player,
+			Hero Icon String(Hero(Sigma))), Null, Null, Top, 1, Color(Red), Color(White), Color(White), Visible To and String,
+			Default Visibility);
+		Set Status(Event Player, Event Player, Unkillable, Match Time);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Wait(1, Ignore Condition);
+		Press Button(All Living Players(All Teams), Button(Jump));
+		Apply Impulse(All Living Players(All Teams), Up, 70, To Player, Cancel Contrary Motion);
+		Set Gravity(All Living Players(All Teams), 0);
+		Set Move Speed(All Living Players(All Teams), 3);
+		Wait(4, Ignore Condition);
+		Apply Impulse(All Living Players(All Teams), Backward, 3000, To Player, Cancel Contrary Motion);
+		Wait(1, Ignore Condition);
+		Set Gravity(All Living Players(All Teams), 1000);
+		Wait(1.250, Ignore Condition);
+		Set Gravity(All Living Players(All Teams), 100);
+		Set Move Speed(All Living Players(All Teams), 100);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+		Clear Status(Event Player, Unkillable);
+	}
+}
+
+rule("Brigitte")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Brigitte;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Use your shield wisely", Null, Hero Icon String(Hero(Brigitte))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Make use of cliffs"), Custom String(""), Null, Left, 2, Color(Blue), Color(White),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("Mei")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Mei;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Damage instantly freezes victims", Null, Hero Icon String(Hero(Mei))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Mei | Freeze!")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Mei;
+	}
+
+	conditions
+	{
+		Hero(Mei) == True;
+	}
+
+	actions
+	{
+		Set Status(Victim, Null, Frozen, 0.500);
+	}
+}
+
+rule("Reaper")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Reaper;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Use your shade and ultimate wisely", Null, Hero Icon String(Hero(Reaper))), Null,
+			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("Pharah")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Pharah;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Invulnerable during ultimate", Null, Hero Icon String(Hero(Pharah))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Pharah | Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Pharah;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Invincible, 3);
+	}
+}
+
+rule("Reinhardt")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Reinhardt;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} In his prime! SMASH!", Null, Hero Icon String(Hero(Reinhardt))), Null, Null, Left,
+			1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("Zarya")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zarya;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Big big girl in a big big world...", Null, Hero Icon String(Hero(Zarya))), Null,
+			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Ultimate = Become a Black Hole"), Custom String(""), Null, Left, 2, Color(Blue),
+			Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Zarya | Ultimate | Super Succ Warning HUD")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zarya;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Global.Zarya_Ultimate_User = 10;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} turned into a black hole & succing you in:", Event Player,
+			Hero Icon String(Hero(Zarya))), Event Player.Zarya_Ultimate_Warning_HUD, Null, Top, 2, Color(Red), Color(Red), Color(White),
+			Visible To and String, Default Visibility);
+		Global.Zarya_Ultimate_HUD = Last Text ID;
+		Wait(10, Ignore Condition);
+		Destroy HUD Text(Global.Zarya_Ultimate_HUD);
+	}
+}
+
+rule("... Zarya | Ultimate | Super Succ Timer")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zarya;
+	}
+
+	conditions
+	{
+		Event Player.Zarya_Ultimate_Warning_HUD > 0;
+	}
+
+	actions
+	{
+		Event Player.Zarya_Ultimate_Warning_HUD -= 1;
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+		Destroy HUD Text(Global.Zarya_Ultimate_HUD);
+	}
+}
+
+rule("... Zarya | Ultimate | Super Succ")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zarya;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Zarya_Ultimate_Warning_HUD = 10;
+		Start Forcing Throttle(Remove From Array(All Players(All Teams), Event Player), 0, 0, 0, 0, 0, 0);
+		Set Gravity(Remove From Array(All Players(All Teams), Event Player), 0);
+		Global.Zarya_Ultimate_User = Event Player;
+		Wait(10, Ignore Condition);
+		Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
+		Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
+		Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
+		Global.Zarya_Ultimate_User = False;
+	}
+}
+
+rule("... Zarya | Ultimate | Moving to Zarya")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Global.Zarya_Ultimate_User != False;
+		Event Player != Global.Zarya_Ultimate_User;
+	}
+
+	actions
+	{
+		Start Accelerating(Event Player, Global.Zarya_Ultimate_User - Event Player, 10, 20, To World, Direction Rate and Max Speed);
+	}
+}
+
+rule("... Zarya | Bubble Gives Boost Speed")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zarya;
+	}
+
+	conditions
+	{
+		Is Using Ability 1(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Move Speed(Event Player, 200);
+		Wait(3, Ignore Condition);
+		Set Move Speed(Event Player, 100);
+	}
+}
+
+rule("Baptiste")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Baptiste;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Final blows give you a heal over time", Null, Hero Icon String(Hero(Baptiste))),
+			Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Baptiste | Healing over Time")
+{
+	event
+	{
+		Player Dealt Final Blow;
+		All;
+		Baptiste;
+	}
+
+	actions
+	{
+		Big Message(Event Player, Custom String("Healing for 10 sec"));
+		Start Heal Over Time(Event Player, Event Player, 10, 35);
+	}
+}
+
+rule("Mccree")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		McCree;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Stun closest player with (E)", Null, Hero Icon String(Hero(McCree))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Mccree | Stun Closest Player")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		McCree;
+	}
+
+	conditions
+	{
+		Is Using Ability 2(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Status(Closest Player To(Event Player, All Teams), Event Player, Stunned, 1.500);
+	}
+}
+
+rule("... Mccree | Ultimate On")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		McCree;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Damage Dealt(Event Player, 8000);
+	}
+}
+
+rule("... Mccree | Ultimate Off")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		McCree;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Set Damage Dealt(Event Player, 100);
+	}
+}
+
+rule("Genji")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Genji;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} High Jumps & Unlimited Dash", Null, Hero Icon String(Hero(Genji))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Genji | Fiery Ultimate Start")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Genji;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Bad Aura, Color(Red), Event Player, 1, Visible To Position and Radius);
+		Event Player.Genji_Ultimate_Effect = Last Created Entity;
+		Set Status(Event Player, Null, Burning, 6);
+		Set Damage Dealt(Event Player, 300);
+	}
+}
+
+rule("... Genji | Fiery Ultimate End")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Genji;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Destroy Effect(Event Player.Genji_Ultimate_Effect);
+		Destroy Effect(Event Player.Genji_Ultimate_Effect);
+		Clear Status(Event Player, Burning);
+		Set Damage Dealt(Event Player, 100);
+	}
+}
+
+rule("Bastion")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Bastion;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Bastion_Power < 6;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Event Player.Bastion_Power += 0;
+		Create HUD Text(Event Player, Custom String("{1} Level 2: Kill 6 players", Null, Hero Icon String(Hero(Bastion))),
+			Event Player.Bastion_Power, Null, Left, 2, Color(Purple), Color(White), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Bastion | Objective Progress")
+{
+	event
+	{
+		Player Dealt Final Blow;
+		All;
+		Bastion;
+	}
+
+	conditions
+	{
+		Event Player.Bastion_Power < 6;
+	}
+
+	actions
+	{
+		Event Player.Bastion_Power += 1;
+	}
+}
+
+rule("... Bastion | Modify Global Variable Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.Bastion_Power == 6;
+	}
+
+	actions
+	{
+		Global.Total_Level2_Bastion += 1;
+		Event Player.Bastion_Power += 1;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Bastion is now level 2!", Event Player, Hero Icon String(Hero(
+			Bastion))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.Bastion_Level2_Warning_HUD = Last Text ID;
+		Create HUD Text(Event Player, Hero Icon String(Hero(Bastion)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(
+			Purple), Color(White), Visible To and String, Default Visibility);
+		Event Player.Bastion_Level2_Icon = Last Text ID;
+		Wait(6, Ignore Condition);
+		Destroy HUD Text(Event Player.Bastion_Level2_Warning_HUD);
+	}
+}
+
+rule("... Bastion | Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Bastion;
+	}
+
+	conditions
+	{
+		Event Player.Bastion_Power == 7;
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Destroy Effect(Event Player.Bastion_Ultimate_Effect);
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.350, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Bastion))), Null, Null, Left, 1, Color(
+			Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Start Heal Over Time(Event Player, Event Player, 5, 2000);
+		Set Ultimate Charge(Event Player, 100);
+		Wait(1, Abort When False);
+		Press Button(Event Player, Button(Ultimate));
+	}
+}
+
+rule("... Bastion | Ultimate Effect")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Bastion;
+	}
+
+	conditions
+	{
+		Is Hero Being Played(Hero(Bastion), All Teams) == True;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Bad Aura, Color(Purple), Event Player, 1, Visible To Position and Radius);
+		Event Player.Bastion_Ultimate_Effect = Last Created Entity;
+	}
+}
+
+rule("Roadhog")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Roadhog_Power < 1200;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Event Player.Roadhog_Power += 0;
+		Create HUD Text(Event Player, Custom String("{1} Hook enemies and carry them to cliffs", Null, Hero Icon String(Hero(Roadhog))),
+			Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Level 2: Deal 1200 damage", Null, Hero Icon String(Hero(Roadhog))),
+			Event Player.Roadhog_Power, Null, Left, 2, Color(Purple), Color(White), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Roadhog | Hooking You and Taking You")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Is Using Ability 1(Event Player) == True;
+		Event Damage > 54.990;
+		Event Damage < 60.010;
+		Is Alive(Victim) == True;
+	}
+
+	actions
+	{
+		Wait(0.500, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} You hooked {0}! Press [ability 1] again to throw him... off a cliff? ;)", Victim,
+			Hero Icon String(Hero(Roadhog))), Null, Null, Top, 1, Color(Yellow), Color(White), Color(White), String, Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Create HUD Text(Victim, Custom String("{1} You got hooked by {0}!", Event Player, Hero Icon String(Hero(Roadhog))), Null, Null,
+			Top, 1, Color(Red), Color(White), Color(White), String, Default Visibility);
+		Victim.HUD_Text_Warning = Last Text ID;
+		Set Gravity(Victim, 0);
+		Event Player.Roadhog_Hook = Victim;
+		Set Status(Victim, Null, Invincible, Global.Hook_Timer);
+		For Player Variable(Event Player, Roadhog_Hook_Timer, 0, Global.Hook_Timer * 20, 1);
+			Skip If(Has Status(Victim, Stunned), 1);
+			Set Status(Victim, Null, Stunned, Global.Hook_Timer);
+			Teleport(Event Player.Roadhog_Hook, World Vector Of(Vector(1, 1, 0.500), Event Player, Rotation And Translation));
+			Wait(0.050, Ignore Condition);
+			Abort If(Event Player.Roadhog_Hook == False);
+		End;
+		Clear Status(Event Player.Roadhog_Hook, Stunned);
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+		Destroy HUD Text(Event Player.Roadhog_Hook.HUD_Text_Warning);
+		Set Gravity(Event Player.Roadhog_Hook, 100);
+		Event Player.Roadhog_Hook = False;
+	}
+}
+
+rule("... Roadhog | Hooking Release")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Roadhog;
+	}
+
+	conditions
+	{
+		(Is Button Held(Event Player, Button(Ability 1)) || Is Dead(Event Player)) == True;
+		Event Player.Roadhog_Hook != False;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+		Destroy HUD Text(Event Player.Roadhog_Hook.HUD_Text_Warning);
+		Set Gravity(Event Player.Roadhog_Hook, 100);
+		Apply Impulse(Event Player.Roadhog_Hook, Facing Direction Of(Event Player), 20, To World, Cancel Contrary Motion);
+		Clear Status(Event Player.Roadhog_Hook, Stunned);
+		Clear Status(Event Player.Roadhog_Hook, Invincible);
+		Event Player.Roadhog_Hook = False;
+	}
+}
+
+rule("... Roadhog | Objective Progress")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Roadhog;
+	}
+
+	actions
+	{
+		Event Player.Roadhog_Power += Event Damage;
+	}
+}
+
+rule("... Roadhog | Level 2 | First Awoken")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Event Player.Roadhog_Power >= 1200;
+		Is Alive(Event Player) == True;
+		Is Hero Being Played(Hero(Roadhog), All Teams) == True;
+	}
+
+	actions
+	{
+		Global.Total_Level2_Roadhog += 1;
+		Event Player.Roadhog_Level2 = 100;
+		Create HUD Text(Event Player, Hero Icon String(Hero(Roadhog)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(
+			Purple), Color(White), Visible To and String, Default Visibility);
+		Event Player.Roadhog_Level2_Icon = Last Text ID;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Roadhog is now level 2!", Event Player, Hero Icon String(Hero(
+			Roadhog))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.Roadhog_Level2_Warning_HUD = Last Text ID;
+		Wait(6, Ignore Condition);
+		Destroy HUD Text(Event Player.Roadhog_Level2_Warning_HUD);
+	}
+}
+
+rule("... Roadhog | Level 2 | Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == False;
+		Is Alive(Event Player) == True;
+		Event Player.Roadhog_Level2 == 100;
+	}
+
+	actions
+	{
+		Clear Status(Event Player, Burning);
+		Set Status(Event Player, Null, Burning, Match Time);
+		Set Ultimate Charge(Event Player, 100);
+		Wait(1, Abort When False);
+		Press Button(Event Player, Button(Ultimate));
+		Loop If Condition Is True;
+	}
+}
+
+rule("... Roadhog | Level 2 | Upgrades")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Roadhog_Level2 == 100;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Start Heal Over Time(Event Player, Event Player, 5, 2000);
+		Set Damage Dealt(Event Player, 500);
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Roadhog))), Custom String(""), Null, Left,
+			1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Non-Stop Ultimate"), Custom String(""), Null, Left, 2, Color(Purple), Color(White),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("Wrecking Ball")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Ultimate = Invisible and Very Strong for 4 sec", Null, Hero Icon String(Hero(
+			Wrecking Ball))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Wait(0.250, Ignore Condition);
+		Press Button(Event Player, Button(Ability 1));
+	}
+}
+
+rule("... Wrecking Ball | Unlimited Ultimate Power")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Wrecking Ball);
+		Is Using Ultimate(Event Player) == True;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+	}
+
+	actions
+	{
+		Set Invisible(Event Player, All);
+		Set Damage Dealt(Event Player, 900);
+		Wait(5, Ignore Condition);
+		Set Invisible(Event Player, None);
+		Set Damage Dealt(Event Player, 100);
+	}
+}
+
+rule("Orisa | Explode after 50 seconds")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Orisa_Level2 < 100;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} 15 Sec to find a spot to stand your ground", Null, Hero Icon String(Hero(Orisa))),
+			Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Stay alive long enough to explode!"), Custom String(""), Null, Left, 2, Color(White),
+			Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Wait(5, Ignore Condition);
+		Abort If Condition Is False;
+		Big Message(Event Player, Custom String("10 sec to find your perfect spot"));
+		Wait(10, Ignore Condition);
+		Abort If Condition Is False;
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Create HUD Text(Event Player, Custom String("{1} Unable to move! Defend your Position!", Null, Hero Icon String(Hero(Orisa))),
+			Null, Null, Left, 1, Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Set Status(Event Player, Null, Burning, 50);
+		Disallow Button(Event Player, Button(Jump));
+		Apply Impulse(Event Player, Down, 70, To World, Cancel Contrary Motion);
+		Create Icon(All Players(All Teams), Event Player, Radioactive, Position, Color(White), False);
+		Event Player.Orisa_Power_Icon = Last Created Entity;
+		Set Move Speed(Event Player, 0);
+		Set Ultimate Charge(Event Player, 100);
+		Event Player.Orisa_Power = 50;
+		Wait(25, Ignore Condition);
+		Destroy Icon(All Dead Players(All Teams));
+		Abort If Condition Is False;
+		Wait(15, Ignore Condition);
+		Destroy Icon(All Dead Players(All Teams));
+		Abort If Condition Is False;
+		Big Message(All Players(All Teams), Custom String("{1} {2} You have 10 sec to kill {0}! Work together!", Event Player,
+			Hero Icon String(Hero(Orisa)), Icon String(Radioactive)));
+		Wait(8, Ignore Condition);
+		Destroy Icon(All Dead Players(All Teams));
+		Abort If Condition Is False;
+		Wait(2, Ignore Condition);
+		Destroy Icon(All Dead Players(All Teams));
+		Abort If Condition Is False;
+		Set Move Speed(Event Player, 100);
+		Kill(Filtered Array(All Living Players(All Teams), Current Array Element != Event Player), Event Player);
+		Destroy Icon(Event Player.Orisa_Power_Icon);
+		Destroy HUD Text(Event Player.Orisa_Kill_Warning_HUD);
+		disabled Call Subroutine(Player_Reset);
+		Event Player.Orisa_Level2 = 100;
+	}
+}
+
+rule("... Orisa | Player Notification Orisa Explosion")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.Orisa_Power == 50;
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} {2} {0} will kill everyone in:", Event Player, Hero Icon String(Hero(
+			Orisa)), Icon String(Radioactive)), Event Player.Orisa_Power, Null, Top, 1, Color(Red), Color(Red), Color(White),
+			Visible To and String, Default Visibility);
+		Event Player.Orisa_Kill_Warning_HUD = Last Text ID;
+	}
+}
+
+rule("... Orisa | Text 50 Seconds To Kill Orisa")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.Orisa_Power == 50;
+	}
+
+	actions
+	{
+		Event Player.Orisa_Power -= 1;
+		Wait(1, Ignore Condition);
+		Loop If(Is Alive(Event Player));
+	}
+}
+
+rule("... Orisa | Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.Orisa_Level2 == 100;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Heal(Event Player, Event Player, 10000);
+		Create HUD Text(Event Player, Hero Icon String(Hero(Orisa)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(Purple),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.Orisa_Level2_Icon = Last Text ID;
+		Global.Speed_Force_Timer += 1;
+		Set Max Health(Event Player, 200);
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Event Player.Orisa_Level2 = 110;
+		Create HUD Text(Event Player, Custom String("{1} Level 2 | Stay alive long enough to win the game!", Null, Hero Icon String(Hero(
+			Orisa))), Null, Null, Left, 1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Orisa is now level 2! Kill her fast!", Event Player,
+			Hero Icon String(Hero(Orisa))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.Orisa_Level2_Warning_HUD = Last Text ID;
+		Wait(6, Ignore Condition);
+		Destroy HUD Text(Event Player.Orisa_Level2_Warning_HUD);
+		Big Message(Event Player, Custom String("You can walk again! Woohoo!"));
+	}
+}
+
+rule("... Orisa | Level 2 | Player Notification Orisa Explosion")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.Orisa_Power_Level2 == 75;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.Orisa_Kill_Warning_HUD);
+		Create HUD Text(All Players(All Teams), Custom String("{1} {2} {0} will win game if not killed:", Event Player, Hero Icon String(
+			Hero(Orisa)), Icon String(Arrow: Down)), Event Player.Orisa_Power_Level2, Null, Top, 1, Color(Red), Color(Red), Color(White),
+			Visible To and String, Default Visibility);
+		Event Player.Orisa_Kill_Warning_HUD = Last Text ID;
+	}
+}
+
+rule("... Orisa | Level 2 | Text 75 Seconds To Kill Orisa")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.Orisa_Power_Level2 == 75;
+	}
+
+	actions
+	{
+		Event Player.Orisa_Power_Level2 -= 1;
+		Wait(1, Ignore Condition);
+		Loop If(Is Alive(Event Player));
+	}
+}
+
+rule("... Orisa | Stay Upgraded After Death")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.Orisa_Level2 == 110;
+		Is Alive(Event Player) == True;
+		Is Hero Being Played(Hero(Orisa), All Teams) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.Orisa_Kill_Warning_HUD);
+		Set Status(Event Player, Null, Burning, 60);
+		Create Icon(All Players(All Teams), Event Player, Arrow: Down, Position, Color(White), False);
+		Event Player.Orisa_Power_Icon = Last Created Entity;
+		Event Player.Orisa_Power_Level2 = 75;
+		Wait(20, Abort When False);
+		Set Ultimate Charge(Event Player, 100);
+		Wait(55, Abort When False);
+		Set Player Score(Event Player, 50);
+	}
+}
+
+rule("Soldier 76 | Base")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Soldier: 76;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Soldier76_Power < 500;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Level 2: Activate Ultimate", Null, Hero Icon String(Hero(Soldier: 76))),
+			Custom String(""), Null, Left, 2, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Soldier 76 | Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Soldier: 76;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Soldier: 76);
+		Is Using Ultimate(Event Player) == True;
+		Event Player.Soldier76_Power < 500;
+	}
+
+	actions
+	{
+		Global.Total_Level2_Soldier76 += 1;
+		Event Player.Soldier76_Power = 500;
+	}
+}
+
+rule("... Soldier 76 | Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Soldier: 76;
+	}
+
+	conditions
+	{
+		Event Player.Soldier76_Power == 500;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Hero Icon String(Hero(Soldier: 76)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(
+			Purple), Color(White), Visible To and String, Default Visibility);
+		Event Player.Soldier76_Level2_Icon = Last Text ID;
+		Create HUD Text(Event Player, Custom String("You teleport to victims' location on every kill"), Custom String(""), Null, Left, 2,
+			Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Soldier: 76))), Custom String(""), Null,
+			Left, 1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Event Player.Soldier76_Power += 10;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Soldier 76 is now level 2! Infinite Ultimate...", Event Player,
+			Hero Icon String(Hero(Soldier: 76))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.Soldier76_Level2_Warning_HUD = Last Text ID;
+		Wait(6, Ignore Condition);
+		Destroy HUD Text(Event Player.Soldier76_Level2_Warning_HUD);
+	}
+}
+
+rule("... Soldier 76 | Stay Upgraded After Death 1")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Soldier: 76;
+	}
+
+	conditions
+	{
+		Is Hero Being Played(Hero(Soldier: 76), All Teams) == True;
+		Event Player.Soldier76_Power > 499;
+		Is Using Ultimate(Event Player) == False;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Soldier: 76))), Custom String(""), Null,
+			Left, 2, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("You teleport to victims' location on every kill"), Custom String(""), Null, Left, 2,
+			Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Soldier: 76))), Custom String(""), Null,
+			Left, 1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Set Ultimate Charge(Event Player, 100);
+		Wait(1, Abort When False);
+		Press Button(Event Player, Button(Ultimate));
+	}
+}
+
+rule("... Soldier 76 | Stay Upgraded After Death 2")
+{
+	event
+	{
+		Player Dealt Final Blow;
+		All;
+		Soldier: 76;
+	}
+
+	conditions
+	{
+		Is Hero Being Played(Hero(Soldier: 76), All Teams) == True;
+		Event Player.Soldier76_Power > 499;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Victim);
+	}
+}
+
+rule("Winston")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Winston;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Hunt the low health heroes, Ultimate = Insane Rage", Null, Hero Icon String(Hero(
+			Winston))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Winston | Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Winston;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Damage Dealt(Event Player, 900);
+	}
+}
+
+rule("... Winston | Not Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Winston;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Set Damage Dealt(Event Player, 100);
+	}
+}
+
+rule("Lúcio")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Ultimate = Throw all players in your facing direction", Null, Hero Icon String(
+			Hero(Lúcio))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Lúcio | Spray Attack")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Primary Fire)) == True;
+	}
+
+	actions
+	{
+		Set Projectile Speed(Event Player, 100);
+		Wait(0.300, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}
+
+rule("... Lúcio | Push Victim Around")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Lúcio;
+	}
+
+	actions
+	{
+		Apply Impulse(Victim, Up, 10, To World, Cancel Contrary Motion);
+		Apply Impulse(Victim, Facing Direction Of(Event Player), 200, To World, Cancel Contrary Motion);
+	}
+}
+
+rule("... Lúcio | The Ultimate Push")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), Custom String("{1} {0}'s ULTIMATE PUNCH!", Event Player, Hero Icon String(Hero(Lúcio))));
+		Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 0);
+		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 0);
+		Apply Impulse(All Players(All Teams), Up, 30, To World, Cancel Contrary Motion);
+		Wait(0.016, Ignore Condition);
+		Global.Lucio_Ultimate = True;
+		Wait(5, Ignore Condition);
+		Abort If(Global.Lucio_Ultimate == False);
+		Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
+		Apply Impulse(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Facing Direction Of(Event Player),
+			200, To World, Cancel Contrary Motion);
+		Global.Lucio_Ultimate = False;
+		Wait(1, Ignore Condition);
+		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
+	}
+}
+
+rule("... Lúcio | The Ultimate Throw")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+		Is On Ground(Event Player) == True;
+		Global.Lucio_Ultimate == True;
+	}
+
+	actions
+	{
+		Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
+		Apply Impulse(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Facing Direction Of(Event Player),
+			200, To World, Cancel Contrary Motion);
+		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 0);
+		Wait(1, Ignore Condition);
+		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
+		Global.Lucio_Ultimate = False;
+	}
+}
+
+rule("Torbjörn")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Torbjörn;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Turret deals with the small fry", Null, Hero Icon String(Hero(Torbjörn))), Null,
+			Null, Left, 0, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Ultimate = Rising Lava"), Null, Null, Left, 1, Color(Blue), Color(White), Color(
+			White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Torbjörn | Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Torbjörn;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Global.Lava_Torbjorn_Activation = 1000;
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Petra")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Petra);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(2.097, -123.500, 9.112));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 120, Absolute Value(0.300), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: King's Row")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(King's Row);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(-93.792, -102.041, -46.070));
+		Modify Global Variable(Lava_Sizes, Append To Array, 95);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 118, Absolute Value(0.300), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 95, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: B-World")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Blizzard World);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(-54.072, -101.265, 90.685));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 107, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: B-World Winter")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Blizzard World Winter);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(-54.072, -101.265, 90.685));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 107, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Château Guillard")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Château Guillard);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(206.260, -101.455, 84.316));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 112, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Hollywood")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Hollywood);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(8.295, -100.707, -48.145));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 107.400, Absolute Value(0.300), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Paris")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Paris);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(-106.531, -97.455, -58.976));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 115, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Eichenwalde")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Eichenwalde);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(68.082, -96.269, -81.329));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 115, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Dorado")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Dorado);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(118.871, -90.281, 22.735));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 106, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava Rising | Map: Hanamura")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_Torbjorn_Activation == 1000;
+		Current Map == Map(Hanamura);
+	}
+
+	actions
+	{
+		Create HUD Text(All Players(All Teams), Custom String("{1} Watch out for lava!", Null, Hero Icon String(Hero(Torbjörn))),
+			Global.Lava_HUD_Warning_Timer, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Global.Lava_HUD_Warning = Last Text ID;
+		Global.Lava_HUD_Warning_Timer = 60;
+		Modify Global Variable(Lava_Position, Append To Array, Vector(12.741, -104.769, -48.970));
+		Modify Global Variable(Lava_Sizes, Append To Array, 100);
+		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
+		Chase Global Variable At Rate(Lava_Sizes, 107, Absolute Value(0.200), Destination and Rate);
+		Wait(60, Ignore Condition);
+		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
+		Global.Lava_Torbjorn_Activation = 0;
+		Destroy HUD Text(Global.Lava_HUD_Warning);
+	}
+}
+
+rule("... Torbjörn | Lava - Start damage")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is True For Any(Global.Lava_Position, Distance Between(Current Array Element, Position Of(Event Player))
+			<= Global.Lava_Sizes[Index Of Array Value(Global.Lava_Position, Current Array Element)] || Distance Between(
+			Current Array Element, Eye Position(Event Player)) <= Global.Lava_Sizes[Index Of Array Value(Global.Lava_Position,
+			Current Array Element)]) == True;
+		Event Player.Lava_Activated_Player == 0;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Burning, Match Time);
+		Start Damage Over Time(Event Player, Null, Match Time, 120);
+	}
+}
+
+rule("... Torbjörn | Lava - Stop damage")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is True For Any(Global.Lava_Position, Distance Between(Current Array Element, Position Of(Event Player))
+			<= Global.Lava_Sizes[Index Of Array Value(Global.Lava_Position, Current Array Element)] || Distance Between(
+			Current Array Element, Eye Position(Event Player)) <= Global.Lava_Sizes[Index Of Array Value(Global.Lava_Position,
+			Current Array Element)]) == False;
+	}
+
+	actions
+	{
+		Clear Status(Event Player, Burning);
+		Stop All Damage Over Time(Event Player);
+	}
+}
+
+rule("... Torbjörn | Lava - Text Warning: 60 Seconds Lava Rising")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Lava_HUD_Warning_Timer == 60;
+	}
+
+	actions
+	{
+		Global.Lava_HUD_Warning_Timer -= 1;
+		Wait(1, Ignore Condition);
+		Loop;
+	}
+}
+
+rule("Echo")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Echo;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Be the god you know you are", Null, Hero Icon String(Hero(Echo))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Start Damage Modification(Event Player, Event Player, 0, None);
+		Event Player.Echo_Immunity = Last Damage Modification ID;
+	}
+}
+
+rule("... Echo | Non-Stop Secondary")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Echo;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Projectile Speed(Event Player, 100);
+		Press Button(Event Player, Button(Secondary Fire));
+		Wait(0.300, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}
+
+rule("Zenyatta")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zenyatta;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Balls relocate victims", Null, Hero Icon String(Hero(Zenyatta))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Ultimate makes victims walk in your facing direction"), Null, Null, Left, 2, Color(
+			Blue), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Zenyatta | Relocate Victim")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Zenyatta;
+	}
+
+	actions
+	{
+		Event Player.Zenyatta_Power += 10;
+		Abort If(Is Dead(Victim));
+		Big Message(Victim, Custom String("{1} You got hit by {0}! ... Heavier and location changed", Event Player, Hero Icon String(Hero(
+			Zenyatta))));
+		Set Gravity(Victim, 500);
+		Event Player.HUD_Text_Start_Game_1 = 6;
+		Play Effect(Victim, Bad Pickup Effect, Color(Red), Victim, 2);
+		Teleport(Filtered Array(Victim, Current Map == Map(King's Row)), Vector(-139.643, -5.305, 19.736));
+		Teleport(Filtered Array(Victim, Current Map == Map(Petra)), Vector(39.164, -2.849, 52.752));
+		Teleport(Filtered Array(Victim, Current Map == Map(Hollywood)), Vector(-3.209, 20.639, -10.984));
+		Teleport(Filtered Array(Victim, Current Map == Map(Paris)), Vector(-103.462, 21.254, -20.372));
+		Teleport(Filtered Array(Victim, Current Map == Map(Château Guillard)), Vector(183.502, 21.910, 36.580));
+		Teleport(Filtered Array(Victim, Current Map == Map(Eichenwalde)), Vector(73.752, 20.445, -84.828));
+		Teleport(Filtered Array(Victim, Current Map == Map(Blizzard World)), Vector(-31.293, 7.431, 132.825));
+		Teleport(Filtered Array(Victim, Current Map == Map(Blizzard World Winter)), Vector(-31.293, 7.431, 132.825));
+		Teleport(Filtered Array(Victim, Current Map == Map(Dorado)), Vector(94.953, 33.565, 74.193));
+		Teleport(Filtered Array(Victim, Current Map == Map(Hanamura)), Vector(-46.389, 20.429, -30.627));
+	}
+}
+
+rule("... Zenyatta | Ultimate Mind Control")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Zenyatta;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Unkillable, 12);
+		Event Player.Zenyatta_Power = 12;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} is casting Mind Control", Event Player, Hero Icon String(Hero(
+			Zenyatta))), Null, Null, Top, 2, Color(Red), Color(Red), Color(White), Visible To and String, Default Visibility);
+		Event Player.Zenyatta_MindControl_Warning_HUD = Last Text ID;
+		Global.Zenyatta_Mind_Control = Event Player;
+		Set Status(Remove From Array(All Players(All Teams), Event Player), Null, Hacked, 12);
+		Wait(6, Ignore Condition);
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(6, Ignore Condition);
+		Global.Zenyatta_Mind_Control = False;
+		Destroy HUD Text(Event Player.Zenyatta_MindControl_Warning_HUD);
+	}
+}
+
+rule("... Zenyatta | Ultimate Mind Control Active")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Global.Zenyatta_Mind_Control != False;
+		Event Player != Global.Zenyatta_Mind_Control;
+		Distance Between(Event Player, Global.Zenyatta_Mind_Control) <= 10;
+		Is In Line of Sight(Event Player, Global.Zenyatta_Mind_Control, Barriers Do Not Block LOS) == True;
+	}
+
+	actions
+	{
+		Start Facing(Event Player, Facing Direction Of(Global.Zenyatta_Mind_Control), 360, To World, Direction and Turn Rate);
+		Start Forcing Throttle(Event Player, 1, 1, 0, 0, 0, 0);
+	}
+}
+
+rule("... Zenyatta | Ultimate Mind Control Stopped")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		(!(Distance Between(Event Player, Global.Zenyatta_Mind_Control) <= 10) || !Is In Line of Sight(Event Player,
+			Global.Zenyatta_Mind_Control, Barriers Do Not Block LOS) || Global.Zenyatta_Mind_Control == False) == True;
+	}
+
+	actions
+	{
+		Stop Facing(Event Player);
+		Stop Forcing Throttle(Event Player);
+	}
+}
+
+rule("Ana")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Ana_Level2 < 100;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Your poison lowers enemies' speed", Null, Hero Icon String(Hero(Ana))), Null,
+			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Level 2: Activate Ultimate"), Custom String(""), Null, Left, 2, Color(Purple), Color(
+			White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Start Damage Modification(Event Player, Event Player, 0, None);
+		Event Player.Ana_Immunity = Last Damage Modification ID;
+	}
+}
+
+rule("... Ana | Base Level | Poisoned Speed")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Event Player.Ana_Level2 < 100;
+	}
+
+	actions
+	{
+		Set Move Speed(Victim, 50);
+		Big Message(Victim, Custom String("{1} {0} poisoned your speed for 15 sec", Event Player, Hero Icon String(Hero(Ana))));
+		Wait(15, Ignore Condition);
+		Set Move Speed(Victim, 100);
+	}
+}
+
+rule("... Ana | First Ultimate | Become Level 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Ana);
+		Is Using Ultimate(Event Player) == True;
+		Event Player.Ana_Level2 < 100;
+	}
+
+	actions
+	{
+		disabled Destroy HUD Text(Event Player.HUD_Text_1);
+		disabled Destroy HUD Text(Event Player.HUD_Text_2);
+		Event Player.Ana_Level2 = 100;
+		Create HUD Text(Event Player, Hero Icon String(Hero(Ana)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(Purple),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.Ana_Level2_Icon = Last Text ID;
+		Wait(0.250, Ignore Condition);
+		disabled Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Ana))), Custom String(""), Null, Left, 2,
+			Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		disabled Event Player.HUD_Text_1 = Last Text ID;
+		Wait(6, Ignore Condition);
+		Destroy HUD Text(Event Player.Ana_Level2_Warning_HUD);
+	}
+}
+
+rule("... Ana | Level 2 | Global HUD")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Event Player.Ana_Level2 == 100;
+	}
+
+	actions
+	{
+		Event Player.Ana_Level2 = 200;
+		Global.Total_Level2_Ana += 1;
+	}
+}
+
+rule("... Ana | Level 2 | Connected Damage")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Event Player.Ana_Level2 >= 100;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Start Damage Modification(Event Player, Event Player, 0, None);
+		Event Player.Ana_Immunity = Last Damage Modification ID;
+		Damage(All Living Players(All Teams), Event Player, 0.012);
+	}
+}
+
+rule("... Ana | Level 2 | Re-activate Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Event Player.Ana_Level2 >= 100;
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Wait(10, Abort When False);
+		Set Ultimate Charge(Event Player, 100);
+	}
+}
+
+rule("... Ana | Level 2 | HUD-Text on Re-Spawn")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Ana;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Player.Ana_Level2 >= 100;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Start Damage Modification(Event Player, Event Player, 0, None);
+		Event Player.Ana_Immunity = Last Damage Modification ID;
+		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Ana))), Custom String(""), Null, Left, 2,
+			Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("Widowmaker")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Widowmaker;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Widowmaker_ThirdEye = 60;
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} All your damage instantly kills", Null, Hero Icon String(Hero(Widowmaker))), Null,
+			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		disabled Create HUD Text(Event Player, Custom String("{2} Share your intel with everyone else:", Null, Hero Icon String(Hero(Widowmaker)),
+			Icon String(Exclamation Mark)), Event Player.Widowmaker_ThirdEye, Null, Left, 2, Color(Blue), Color(Blue), Color(White),
+			Visible To and String, Default Visibility);
+		disabled Event Player.HUD_Text_2 = Last Text ID;
+	}
+}
+
+rule("... Widowmaker | Instant Kill")
+{
+	event
+	{
+		Player Dealt Damage;
+		All;
+		Widowmaker;
+	}
+
+	actions
+	{
+		Kill(Victim, Event Player);
+	}
+}
+
+rule("Junkrat")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Junkrat;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_1);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Strong damage", Null, Hero Icon String(Hero(Junkrat))), Null, Null, Left, 1,
+			Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+	}
+}
+
+rule("... Junkrat | Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Junkrat;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Move Speed(Event Player, 125);
+	}
+}
+
+rule("... Junkrat | Not Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Junkrat;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == False;
+	}
+
+	actions
+	{
+		Set Move Speed(Event Player, 100);
+	}
+}
+
+rule("Tracer")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Tracer;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Collect Health Packs", Null, Hero Icon String(Hero(Tracer))), Null, Null, Left, 1,
+			Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_1 = Last Text ID;
+		Create HUD Text(Event Player, Custom String("Reach 150 health to enter Speed Force"), Null, Null, Left, 2, Color(Purple), Color(
+			White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Wait(1, Ignore Condition);
+		Damage(Event Player, Null, Max Health(Event Player) * 0.225);
+	}
+}
+
+rule("... Tracer | Speed Force Ready")
+{
+	event
+	{
+		Player Received Healing;
+		All;
+		Tracer;
+	}
+
+	conditions
+	{
+		Health(Event Player) >= Max Health(Event Player);
+	}
+
+	actions
+	{
+		Set Ultimate Charge(Event Player, 100);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Create HUD Text(Event Player, Custom String("Press [interact] to enter the speed force!"), Custom String(""), Null, Top, 2, Color(
+			Orange), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Set Status(Event Player, Null, Burning, Match Time);
+		Event Player.Tracer_Speed_Force = True;
+	}
+}
+
+rule("... Tracer | Speed Force Enter")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Tracer;
+	}
+
+	conditions
+	{
+		Event Player.Tracer_Speed_Force == True;
+		Is Button Held(Event Player, Button(Interact)) == True;
+		Global.Speed_Force_Timer == 0;
+	}
+
+	actions
+	{
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Create HUD Text(Event Player, Custom String("You entered the speed force!"), Global.Speed_Force_Timer, Null, Left, 2, Color(Green),
+			Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} entered the speed force!", Event Player, Hero Icon String(Hero(
+			Tracer))), Global.Speed_Force_Timer, Null, Top, 1, Color(Red), Color(Red), Color(White), Visible To and String,
+			Default Visibility);
+		Event Player.HUD_Text_Warning = Last Text ID;
+		Set Status(Event Player, Null, Phased Out, Global.Speed_Force_Duration / Global.Speed_Force_Divider - 0.150);
+		Set Status(Event Player, Event Player, Hacked, Match Time);
+		Set Slow Motion(100 / Global.Speed_Force_Divider);
+		Set Move Speed(Event Player, Global.Speed_Force_Divider * 100);
+		Set Damage Dealt(Event Player, Global.Speed_Force_Divider * 200);
+		Set Gravity(Event Player, Global.Speed_Force_Divider * 100);
+		For Global Variable(Speed_Force_Timer, Global.Speed_Force_Duration, 0, -1);
+			Wait(1 / Global.Speed_Force_Divider, Ignore Condition);
+		End;
+		Clear Status(Event Player, Burning);
+		Set Move Speed(Event Player, 100);
+		Set Damage Dealt(Event Player, 100);
+		Set Gravity(Event Player, 100);
+		Set Slow Motion(100);
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Create HUD Text(Event Player, Custom String("Reach 150 health to enter Speed Force"), Event Player.Tracer_Power, Null, Left, 2,
+			Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Destroy HUD Text(Event Player.HUD_Text_Warning);
+		Event Player.Tracer_Speed_Force = False;
+		Damage(Event Player, Null, Max Health(Event Player) * 0.225);
+		Wait(4, Ignore Condition);
+		Clear Status(Event Player, Hacked);
+	}
+}
+
+rule("... Tracer | Cancel Speed Force")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Tracer;
+	}
+
+	conditions
+	{
+		Health(Event Player) < Max Health(Event Player);
+	}
+
+	actions
+	{
+		Event Player.Tracer_Speed_Force = False;
+		Destroy HUD Text(Event Player.HUD_Text_2);
+		Create HUD Text(Event Player, Custom String("Reach 150 health to enter Speed Force"), Null, Null, Left, 2, Color(Purple), Color(
+			White), Color(White), Visible To and String, Default Visibility);
+		Event Player.HUD_Text_2 = Last Text ID;
+		Clear Status(Event Player, Burning);
+	}
+}
+
+disabled rule("Test | Dummy")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Interact)) == True;
+	}
+
+	actions
+	{
+		Create Dummy Bot(Hero(Brigitte), All Teams, -1, Event Player, Vector(0, 0, 0));
+	}
+}
+
+disabled rule("Test | Dummy Fight Back")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Dummy Bot(Event Player) == True;
+		Is Button Held(Event Player, Button(Primary Fire)) == False;
+	}
+
+	actions
+	{
+		Start Holding Button(Event Player, Button(Primary Fire));
+	}
+}
+
+disabled rule("Test | Change Hero")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Is Button Held(Event Player, Button(Interact)) == True;
+	}
+
+	actions
+	{
+		Call Subroutine(Player_Reset);
+		Respawn(Event Player);
+	}
+}
+
+disabled rule("Test | Activate Ultimate")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Crouch)) == True;
+	}
+
+	actions
+	{
+		Set Ultimate Charge(Event Player, 100);
+	}
+}
