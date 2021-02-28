@@ -30,7 +30,7 @@
 - **Junkrat**: Reduced the distance checking rate of the Auto dot to reduce server load
 
 ### Removed
-- **Moira**:Removed ball spam. It crashed the server a lot
+- **Moira**: Removed ball spam. It crashed the server a lot
 
 ## [1.5.1]
 ### Added
@@ -89,7 +89,7 @@
 - **Torb**: Introduced the concept of the Lava God. Players become the Lava God allowing them not to be burned by the lava.
 
 ### Changed
-- **Ana**:Reworked Ana's level 2 so that it now makes her shoot darts that sleep for exactly 5 seconds and then kill her target. Targets are guaranteed kills
+- **Ana**: Reworked Ana's level 2 so that it now makes her shoot darts that sleep for exactly 5 seconds and then kill her target. Targets are guaranteed kills
 - **Zarya**: Changed ult to make sure Zarya is 100% charged while doing it. Reduced Cooldown on bubble
 
 ## [1.2.1] 
