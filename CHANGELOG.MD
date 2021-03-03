@@ -7,8 +7,8 @@
 
 ### Changed
 - **General**: Ashe,Lucio,Mercy,Sigma,Torb,and Zarya spawn with 65% ult charge plus general ult gain tweaks
-- **General**: Low health heroes armor increased to 50 armor each kill (Ashe,Widow,Pharah,Reaper,Genji)
-- **General**: HUD improvements and rewording for Ashe,Wrecking Ball,Winston,Widow,Sym,Zenyata,Moira
+- **General**: Low health heroes armor increased to 50 armor each kill non healable (Ashe,Widow,Pharah,Reaper,Genji)
+- **General**: HUD improvements and rewording for Ashe,Wrecking Ball,Winston,Widow,Sym,Zenyata,Moira,Orisa
 - **General**: Reenabled Hollywood and Kings Row 
 - **General**: Roadhog and Orisa global level 2  counter corrected
 - **Ana**: Sleep ability reenable during Level 2
@@ -18,8 +18,10 @@
 - **Lucio**: Damage increased when wall riding 
 - **Lucio**: Shield gain per Env kill decreased to 30%
 - **Moira**: Fade's cooldown changes based on power level. <500  =  seconds,>=500  && <=1000 = 6 seconds,>1000  && <2000 = 15 Seconds,>2000 = 90 seconds
+- **Reaper**: Health reduced to 35%
 - **Reinhardt**: Shatter damage increased from 30 to 
 - **Tracer**: Rewind abilitiy no longer disabled on spawn. This was originally a bug fix but it sometimes causes issues if they die before its turn back on
+- **Tracer**: Prevent double speed force
 - **Zarya**: Improved ult clean up code to help avoid players getting stuck. 
 
 ## [1.6.1] 2/26/2021

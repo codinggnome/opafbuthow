@@ -358,7 +358,7 @@ settings
 			Reaper
 			{
 				Damage Dealt: 500%
-				Health: 60%
+				Health: 30%
 				Movement Gravity: 70%
 				Movement Speed: 250%
 				Quick Melee: Off
@@ -795,6 +795,7 @@ rule("General | Global Setup")
 		Global.Speed_Force_Duration = 10;
 		Global.Speed_Force_Divider = 5;
 		Global.ZaryaUltReset = True;
+		Global.TracerSpeedForcePlayer = 0;
 	}
 }
 
@@ -3628,11 +3629,11 @@ rule("Orisa | Explode after 50 seconds")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} 15 Sec to find a spot to stand your ground", Null, Hero Icon String(Hero(Orisa))),
-			Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1} 15 Sec to find a spot to \r\nstand your ground", Null, Hero Icon String(Hero(
+			Orisa))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-		Create HUD Text(Event Player, Custom String("Stay alive long enough to explode!"), Custom String(""), Null, Left, 2, Color(White),
-			Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("Stay alive long enough\r\n to explode!"), Custom String(""), Null, Left, 2, Color(
+			White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
 		Wait(5, Ignore Condition);
 		Abort If Condition Is False;
@@ -3640,7 +3641,7 @@ rule("Orisa | Explode after 50 seconds")
 		Wait(10, Ignore Condition);
 		Abort If Condition Is False;
 		Destroy HUD Text(Event Player.HUD_Text_1);
-		Create HUD Text(Event Player, Custom String("{1} Unable to move! Defend your Position!", Null, Hero Icon String(Hero(Orisa))),
+		Create HUD Text(Event Player, Custom String("{1} Unable to move! \r\nDefend your Position!", Null, Hero Icon String(Hero(Orisa))),
 			Null, Null, Left, 1, Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Set Status(Event Player, Null, Burning, 50);
@@ -3747,8 +3748,8 @@ rule("... Orisa | Level 2")
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
 		Event Player.Orisa_Level2 = 110;
-		Create HUD Text(Event Player, Custom String("{1} Level 2 | Stay alive long enough to win the game!", Null, Hero Icon String(Hero(
-			Orisa))), Null, Null, Left, 1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1} Level 2 | Stay alive long \r\nenough to win the game!", Null, Hero Icon String(
+			Hero(Orisa))), Null, Null, Left, 1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Orisa is now level 2! Kill her fast!", Event Player,
 			Hero Icon String(Hero(Orisa))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String,
@@ -5813,9 +5814,9 @@ rule("... Tracer | Speed Force Ready")
 	actions
 	{
 		Destroy HUD Text(Event Player.Tracer_HuD_Interact);
-		Create HUD Text(Event Player, Custom String("Press [interact] to enter the speed force!"), Custom String(
-			"(this won't work if another Tracer is currently in speed force)"), Null, Top, 2, Color(Orange), Color(White), Color(White),
-			Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String(
+			"Press [interact] to enter the speed force!\r\n(only if another Tracer isn't already)"), Custom String(""), Custom String(""),
+			Top, 2, Color(Orange), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.Tracer_HuD_Interact = Last Text ID;
 		Set Status(Event Player, Null, Burning, Match Time);
 		Event Player.Tracer_Speed_Force = True;
@@ -6245,7 +6246,7 @@ rule("General | Armor Buff for low health heroes")
 
 	actions
 	{
-		Add Health Pool To Player(Event Player, Armor, 50, True, True);
+		Add Health Pool To Player(Event Player, Armor, 50, False, True);
 	}
 }
 
