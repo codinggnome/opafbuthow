@@ -28,6 +28,7 @@ settings
 				Eichenwalde
 				Hollywood
 				King's Row
+				Paris
 			}
 		}
 
