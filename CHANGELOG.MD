@@ -1,6 +1,27 @@
 # Changelog
 - Notable changes from the original version of this mode
 
+## [1.7.0] 3/02/2021
+### Added
+- **General**: QP/Comp HUDS no longer block the in game huds :D
+
+### Changed
+- **General**: Ashe,Lucio,Mercy,Sigma,Torb,and Zarya spawn with 65% ult charge plus general ult gain tweaks
+- **General**: Low health heroes armor increased to 50 armor each kill (Ashe,Widow,Pharah,Reaper,Genji)
+- **General**: HUD improvements and rewording for Ashe,Wrecking Ball,Winston,Widow,Sym,Zenyata,Moira
+- **General**: Reenabled Hollywood and Kings Row 
+- **General**: Roadhog and Orisa global level 2  counter corrected
+- **Ana**: Sleep ability reenable during Level 2
+- **Brig**: Shield cooldown reduced to 80%
+- **Junkrat**: Burn damage from passive increased from 10 dps to 20 dps
+- **Lucio**: New Ultimate:Players near where Lucio lands with his ult drop through the ground. This should allow for more kills when on maps without boop places
+- **Lucio**: Damage increased when wall riding 
+- **Lucio**: Shield gain per Env kill decreased to 30%
+- **Moira**: Fade's cooldown changes based on power level. <500  =  seconds,>=500  && <=1000 = 6 seconds,>1000  && <2000 = 15 Seconds,>2000 = 90 seconds
+- **Reinhardt**: Shatter damage increased from 30 to 
+- **Tracer**: Rewind abilitiy no longer disabled on spawn. This was originally a bug fix but it sometimes causes issues if they die before its turn back on
+- **Zarya**: Improved ult clean up code to help avoid players getting stuck. 
+
 ## [1.6.1] 2/26/2021
 ### Added
 - **General**: Ashe,Mercy,Sigma,Torb, and Zarya spawn with 45% ult charge
@@ -14,7 +35,7 @@
 
 ## [1.6.0] 2/20/2021
 ### Added
-- **General**: Low health heroes get 20% armor each kill (Ashe,Widow,Pharah,Reaper,Genji)
+- **General**: Low health heroes get 20 armor each kill (Ashe,Widow,Pharah,Reaper,Genji)
 - **General**: Support for Kanezaka
 
 ### Changed

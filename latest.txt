@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.6.1"
+		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.7.0"
 	}
 
 	lobby
@@ -26,7 +26,8 @@ settings
 				Blizzard World
 				Dorado
 				Eichenwalde
-				Paris
+				Hollywood
+				King's Row
 			}
 		}
 
@@ -78,8 +79,8 @@ settings
 				Projectile Speed: 200%
 				Quick Melee: Off
 				Ultimate Duration: 200%
-				Ultimate Generation - Combat B.O.B.: 250%
-				Ultimate Generation - Passive B.O.B.: 250%
+				Ultimate Generation - Combat B.O.B.: 450%
+				Ultimate Generation - Passive B.O.B.: 350%
 				Ultimate Generation B.O.B.: 10%
 			}
 
@@ -119,6 +120,7 @@ settings
 
 			Brigitte
 			{
+				Barrier Shield Cooldown Time: 80%
 				Barrier Shield Recharge Rate: 500%
 				Damage Dealt: 250%
 				Healing Received: 120%
@@ -236,9 +238,10 @@ settings
 			Lúcio
 			{
 				Amp It Up Cooldown Time: 20%
-				Damage Dealt: 150%
+				Damage Dealt: 250%
+				Damage Received: 80%
 				Healing Received: 10%
-				Health: 40%
+				Health: 30%
 				Movement Gravity: 80%
 				Movement Speed: 300%
 				No Ammunition Requirement: On
@@ -295,7 +298,7 @@ settings
 				Projectile Speed: 250%
 				Quick Melee: Off
 				Resurrect: Off
-				Ultimate Generation - Combat Valkyrie: 300%
+				Ultimate Generation - Combat Valkyrie: 400%
 				Ultimate Generation - Passive Valkyrie: 250%
 				Ultimate Generation Valkyrie: 10%
 				Weapons Enabled: Caduceus Blaster Only
@@ -413,8 +416,8 @@ settings
 				Movement Speed: 85%
 				Projectile Speed: 200%
 				Quick Melee: Off
-				Ultimate Generation - Combat Gravitic Flux: 300%
-				Ultimate Generation - Passive Gravitic Flux: 300%
+				Ultimate Generation - Combat Gravitic Flux: 350%
+				Ultimate Generation - Passive Gravitic Flux: 350%
 				Ultimate Generation Gravitic Flux: 10%
 			}
 
@@ -471,8 +474,8 @@ settings
 				Projectile Speed: 225%
 				Quick Melee: Off
 				Ultimate Duration: 200%
-				Ultimate Generation - Combat Molten Core: 250%
-				Ultimate Generation - Passive Molten Core: 250%
+				Ultimate Generation - Combat Molten Core: 450%
+				Ultimate Generation - Passive Molten Core: 350%
 				Ultimate Generation Molten Core: 10%
 			}
 
@@ -564,8 +567,8 @@ settings
 				Projected Barrier: Off
 				Projectile Speed: 500%
 				Quick Melee: Off
-				Ultimate Generation - Combat Graviton Surge: 250%
-				Ultimate Generation - Passive Graviton Surge: 250%
+				Ultimate Generation - Combat Graviton Surge: 450%
+				Ultimate Generation - Passive Graviton Surge: 350%
 				Ultimate Generation Graviton Surge: 10%
 			}
 
@@ -624,6 +627,7 @@ variables
 		37: ZaryaUltReset
 		38: ZaryaStartMoving
 		39: TracerSpeedForcePlayer
+		40: Total_Level2_Orisa
 
 	player:
 		0: Soldier76_Power
@@ -724,6 +728,11 @@ variables
 		102: ZayraUltHud
 		103: HeroesAllowed
 		104: ZaryaBlackHoleEffect
+		105: LucioUltPlayerPos
+		106: LucioNearByArray
+		107: HudFiller1
+		108: HudFiller2
+		109: HudFiller3
 }
 
 subroutines
@@ -788,34 +797,6 @@ rule("General | Global Setup")
 	}
 }
 
-disabled rule("Sigma Ult Bug Fix")
-{
-	event
-	{
-		Player Died;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		Event Player == Global.Sigma_Player_Ulting;
-	}
-
-	actions
-	{
-		disabled If(Event Player == Global.Sigma_Player_Ulting);
-		Set Gravity(All Players(All Teams), 100);
-		Destroy HUD Text(Global.SIGMA_ULT_HUD);
-		Set Move Speed(All Players(All Teams), 100);
-		Global.Sigma_Player_Ulting = Null;
-		Global.Sigma_Test = False;
-		Global.Sigma_Ulting = False;
-		disabled End;
-		Call Subroutine(Player_Reset);
-	}
-}
-
 rule("General | Player Reset at Death")
 {
 	event
@@ -835,8 +816,9 @@ rule("General | Player Reset at Death")
 	actions
 	{
 		If(Event Player == Global.Zarya_Ultimate_User);
+			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 			Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
-			disabled Set Ability Cooldown(Event Player, Button(Ability 1), 5);
+			Set Ability Cooldown(Event Player, Button(Ability 1), 5);
 			Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
 			Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
 			Event Player.ZayraUltIsCharged = False;
@@ -846,10 +828,11 @@ rule("General | Player Reset at Death")
 			disabled Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 			disabled Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
 			disabled Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
-			disabled Global.Zarya_Ultimate_User = Null;
+			Global.Zarya_Ultimate_User = Null;
 			Destroy HUD Text(Event Player.ZayraUltHud);
 		End;
 		If(Event Player == Global.Lava_Event_Player);
+			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 			Destroy Icon(Event Player.Lava_Event_Lava_King_Icon);
 			Set Move Speed(Event Player, 100);
 			Global.Lava_Event_Player = Null;
@@ -862,6 +845,7 @@ rule("General | Player Reset at Death")
 			Set Move Speed(All Players(All Teams), 100);
 			Global.Sigma_Player_Ulting = Null;
 			Global.Sigma_Test = False;
+			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 			Global.Sigma_Ulting = False;
 		End;
 		If(Event Player == Global.LucioUltPlayer);
@@ -869,16 +853,16 @@ rule("General | Player Reset at Death")
 			Global.LucioUltPlayer = Null;
 			Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
 			Global.Lucio_Ultimate = Null;
+			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
+		End;
+		disabled Event Player.ZayraUltIsCharged = False;
+		If(Event Player == Global.TracerSpeedForcePlayer);
+			Set Slow Motion(100);
+			Log To Inspector(Custom String("HALP"));
+			Global.TracerSpeedForcePlayer = 0;
+			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 		End;
 		Call Subroutine(Player_Reset);
-		disabled Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
-		disabled Set Ability Cooldown(Event Player, Button(Ability 1), 5);
-		disabled Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
-		disabled Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
-		disabled Event Player.ZayraUltIsCharged = False;
-		disabled Remove Health Pool From Player(Event Player.ZayraHealthPoolMod);
-		disabled Destroy HUD Text(Event Player.ZayraUltHud);
-		disabled Global.ZaryaUltReset = True;
 	}
 }
 
@@ -934,7 +918,7 @@ rule("General | Player Left Game")
 		If(Event Player == Global.TracerSpeedForcePlayer);
 			Set Slow Motion(100);
 			Log To Inspector(Custom String("HALP"));
-			Global.TracerSpeedForcePlayer = Null;
+			Global.TracerSpeedForcePlayer = 0;
 		End;
 		Call Subroutine(Player_Reset);
 		disabled Set Ability Cooldown(Event Player, Button(Ability 1), 5);
@@ -952,6 +936,7 @@ rule("General | Subroutine | Player Reset")
 	actions
 	{
 		Set Projectile Speed(Event Player, 100);
+		Enable Movement Collision With Environment(Event Player);
 		Set Max Health(Event Player, 100);
 		Destroy HUD Text(Event Player.Zenyatta_MindControl_Warning_HUD);
 		Set Damage Received(Event Player, 100);
@@ -1045,11 +1030,38 @@ rule("General | Subroutine | Player Reset")
 		Destroy HUD Text(Event Player.Torb_Hud_text3);
 		Event Player.Tracer_Health_Pack_Heals = 0;
 		Wait(3, Ignore Condition);
+		Destroy HUD Text(Event Player.HudFiller1);
+		Destroy HUD Text(Event Player.HudFiller2);
+		Destroy HUD Text(Event Player.HudFiller3);
+		disabled Set Ability 2 Enabled(Event Player, True);
 		If(Global.Debug != True);
 			Set Player Allowed Heroes(Event Player, Random Value In Array(All Heroes));
 			disabled Call Subroutine(HeroSelection);
 		End;
 		disabled Event Player.HeroesAllowed = Random Value In Array(All Heroes);
+	}
+}
+
+rule("Global - HUD Spacing")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	actions
+	{
+		Create HUD Text(Event Player, Custom String(""), Custom String(""), Custom String("   "), Left, -1, Color(White), Color(White),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.HudFiller1 = Last Created Entity;
+		Create HUD Text(Event Player, Custom String(""), Custom String(""), Custom String("   "), Left, -1, Color(White), Color(White),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.HudFiller2 = Last Created Entity;
+		Create HUD Text(Event Player, Custom String(""), Custom String(""), Custom String("   "), Left, -1, Color(White), Color(White),
+			Color(White), Visible To and String, Default Visibility);
+		Event Player.HudFiller3 = Last Created Entity;
 	}
 }
 
@@ -1062,6 +1074,7 @@ rule("General | HUD Text Level 2's")
 
 	actions
 	{
+		Global.Total_Level2_Orisa = 0;
 		Global.Speed_Force_Timer = 0;
 		Global.Total_Level2_Ana = 0;
 		Global.Total_Level2_Bastion = 0;
@@ -1080,7 +1093,7 @@ rule("General | HUD Text Level 2's")
 			Color(White), Color(White), Visible To and String, Default Visibility);
 		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Ana)), Global.Total_Level2_Ana, Null, Right, 2, Color(Orange), Color(
 			White), Color(White), Visible To and String, Default Visibility);
-		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Orisa)), Global.Speed_Force_Timer, Null, Right, 2, Color(Orange),
+		Create HUD Text(All Players(All Teams), Hero Icon String(Hero(Orisa)), Global.Total_Level2_Orisa, Null, Right, 2, Color(Orange),
 			Color(White), Color(White), Visible To and String, Default Visibility);
 	}
 }
@@ -1324,8 +1337,8 @@ rule("Symmetra")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} Your wall cannot be passed by regular enemies", Null, Hero Icon String(Hero(
-			Symmetra))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1} Your wall cannot be \r\n walked through by most enemies", Null, Hero Icon String(
+			Hero(Symmetra))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Create HUD Text(Event Player, Custom String("Fly little robots... FLY!"), Custom String(""), Null, Left, 2, Color(Blue), Color(
 			White), Color(White), Visible To and String, Default Visibility);
@@ -1600,8 +1613,8 @@ rule("Moira | Base")
 		Create HUD Text(Event Player, Custom String("{1} Starts weak, but stronger each second!", Null, Hero Icon String(Hero(Moira))),
 			Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-		Create HUD Text(Event Player, Custom String("Level 2 Objective: Reach 2000 Damaging Power"), Event Player.Moira_Power, Null, Left,
-			2, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("Level 2 @ 2000 Damaging Power"), Event Player.Moira_Power, Null, Left, 2, Color(
+			Purple), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
 		Create HUD Text(Event Player, Custom String("<- Moira's DMG done is equal to her Damaging Power"), Custom String(""), Null, Top, 2,
 			Color(Orange), Color(Red), Color(White), Visible To and String, Default Visibility);
@@ -1633,13 +1646,13 @@ rule("Moira Cooldown 1")
 	{
 		Wait(1, Ignore Condition);
 		If(Event Player.Moira_Power < 500);
-			Set Ability Cooldown(Event Player, Button(Ability 1), 3);
+			Set Ability Cooldown(Event Player, Button(Ability 1), 1);
 		End;
 		If(Event Player.Moira_Power >= 500 && Event Player.Moira_Power <= 1000);
-			Set Ability Cooldown(Event Player, Button(Ability 1), 15);
+			Set Ability Cooldown(Event Player, Button(Ability 1), 6);
 		End;
 		If(Event Player.Moira_Power >= 1000 && Event Player.Moira_Power <= 2000);
-			Set Ability Cooldown(Event Player, Button(Ability 1), 30);
+			Set Ability Cooldown(Event Player, Button(Ability 1), 15);
 		End;
 		If(Event Player.Moira_Power >= 2000 && True);
 			Set Ability Cooldown(Event Player, Button(Ability 1), 90);
@@ -1871,7 +1884,7 @@ rule("... Moira | Objective 2000")
 			Event Player, Hero Icon String(Hero(Moira))), Custom String(""), Null, Top, 2, Color(Turquoise), Color(Red), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.HUD_Text_Warning = Last Text ID;
-		Create HUD Text(Event Player, Hero Icon String(Hero(Moira)), Custom String("Level 2"), Null, Left, 3, Color(Purple), Color(Purple),
+		Create HUD Text(Event Player, Hero Icon String(Hero(Moira)), Custom String("Level 2"), Null, Left, 8, Color(Purple), Color(Purple),
 			Color(White), Visible To and String, Default Visibility);
 		Event Player.Moira_Level2_Icon = Last Text ID;
 		Wait(5, Ignore Condition);
@@ -1922,7 +1935,7 @@ rule("Sombra")
 		Create HUD Text(Event Player, Custom String("{1} Ultimate hacks everyone", Null, Hero Icon String(Hero(Sombra))), Null, Null, Left,
 			1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-		Create HUD Text(Event Player, Custom String("And reduces everyones ultimate charge to 0%"), Custom String(""), Null, Left, 2,
+		Create HUD Text(Event Player, Custom String("And reduces everyones \r\nultimate charge to 0%"), Custom String(""), Null, Left, 2,
 			Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
 		Create HUD Text(Event Player, Custom String(""), Custom String("1. Shooting auto hacks target"), Null, Left, 3, Color(White),
@@ -1996,8 +2009,8 @@ rule("Ashe")
 		Destroy HUD Text(Event Player.Hud_Text_4);
 		Destroy HUD Text(Event Player.Hud_Text_3);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} 200% Bob Duration", Null, Hero Icon String(Hero(Ashe))), Custom String(""), Null,
-			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1} ULT = Invisible while Bob is alive", Null, Hero Icon String(Hero(Ashe))),
+			Custom String(""), Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Start Damage Modification(Event Player, Event Player, 0, None);
 		Event Player.Ashe_Immunity = Last Damage Modification ID;
@@ -2005,8 +2018,8 @@ rule("Ashe")
 		Create HUD Text(Event Player, Null, Custom String("1. Unlimited Ammo"), Null, Left, 2, Color(White), Color(White), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
-		Create HUD Text(Event Player, Custom String(""), Custom String("2. Invisible while Bob is alive"), Null, Left, 3, Color(White),
-			Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String(""), Custom String("2. 200% Bob Duration"), Null, Left, 3, Color(White), Color(White),
+			Color(White), Visible To and String, Default Visibility);
 		Event Player.Hud_Text_3 = Last Text ID;
 		Create HUD Text(Event Player, Custom String(""), Custom String("3. Unlimited Dynamite/Immune to it's damage "), Null, Left, 4,
 			Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
@@ -2096,7 +2109,7 @@ rule("Sigma")
 		Create HUD Text(Event Player, Custom String("{1} Invisible while crouching", Null, Hero Icon String(Hero(Sigma))), Null, Null,
 			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-		Create HUD Text(Event Player, Custom String("Ultimate = Control Gravity. Enables Fall damage"), Custom String(""), Null, Left, 2,
+		Create HUD Text(Event Player, Custom String("Ult = Control gravity. \r\nEnables Fall damage!"), Custom String(""), Null, Left, 2,
 			Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
 		disabled Event Player.Sigma_Ult_Player_Max_Height = Vertical Speed Of(Event Player);
@@ -2393,7 +2406,7 @@ rule("Reaper")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} You can wraith through walls. Use it wisely.", Null, Hero Icon String(Hero(
+		Create HUD Text(Event Player, Custom String("{1} You can wraith through walls. \r\nUse it wisely.", Null, Hero Icon String(Hero(
 			Reaper))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		disabled Start Forcing Player Outlines(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player, True,
@@ -2599,7 +2612,7 @@ rule("... Reinhardt before using ultimate - [(p)i = Loop] [(p)j = Remove loop] [
 		Set Damage Dealt(Event Player, 0);
 		Event Player.ReinShouldStart = True;
 		Wait(0.500, Ignore Condition);
-		Set Damage Dealt(Event Player, 30);
+		Set Damage Dealt(Event Player, 45);
 		Event Player.ReinShouldStart = False;
 		disabled Log To Inspector(Custom String("Current Health {0}", Health(Event Player)));
 		disabled Modify Player Variable(Event Player, ReinShatterArray, Append To Array, Filtered Array(Players Within Radius(
@@ -2797,7 +2810,7 @@ rule("... Zarya | Ultimate | Super Succ Warning HUD")
 		Wait Until(Event Player.ZayraUltIsCharged == True, 20);
 		Event Player.Zarya_Ultimate_Warning_HUD = 10;
 		Destroy HUD Text(Event Player.ZayraUltHud);
-		Create HUD Text(All Players(All Teams), Custom String("{1} {0} turned into a black hole & succing you in:", Event Player,
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} turned into a black hole & sucking you in:", Event Player,
 			Hero Icon String(Hero(Zarya))), Event Player.Zarya_Ultimate_Warning_HUD, Null, Top, 2, Color(Red), Color(Red), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.ZayraUltHud = Last Text ID;
@@ -2817,13 +2830,14 @@ rule("... Zarya | Ultimate | Multi Zayra /Clean up0")
 
 	conditions
 	{
-		Is Alive(Event Player) == True;
+		disabled Is Alive(Event Player) == True;
 		Is Using Ultimate(Event Player) == True;
 	}
 
 	actions
 	{
 		Wait Until(Global.Zarya_Ultimate_User != Event Player, 15);
+		Log To Inspector(Custom String("{0} - Backup Zarya Clean up Ran", Event Player));
 		Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 		Set Ability Cooldown(Event Player, Button(Ability 1), 5);
 		Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
@@ -2864,7 +2878,7 @@ rule("... Zarya | Ultimate | Super Succ | Max Charge")
 		disabled Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Black), Event Player, 5);
 		disabled Create Effect(All Players(All Teams), Bad Aura, Color(Black), Event Player, 1, Visible To Position and Radius);
 		Event Player.ZayraUltIsCharged = True;
-		Add Health Pool To Player(Event Player, Shields, 3000, False, True);
+		Add Health Pool To Player(Event Player, Shields, 4500, False, True);
 		Event Player.ZayraHealthPoolMod = Last Created Health Pool;
 		disabled Event Player.Zarya_Ultimate_Warning_HUD = 10;
 		disabled Wait(1, Ignore Condition);
@@ -2924,7 +2938,7 @@ rule("... Zarya | Ultimate | Super Succ Timer")
 		Event Player.Zarya_Ultimate_Warning_HUD -= 1;
 		Wait(1, Ignore Condition);
 		Loop If Condition Is True;
-		disabled Destroy HUD Text(Event Player.ZayraUltHud);
+		Destroy HUD Text(Event Player.ZayraUltHud);
 		Event Player.Zarya_Ultimate_Warning_HUD = Null;
 	}
 }
@@ -3246,7 +3260,7 @@ rule("... Bastion | Modify Global Variable Level 2")
 		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Bastion is now level 2!", Event Player, Hero Icon String(Hero(
 			Bastion))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.Bastion_Level2_Warning_HUD = Last Text ID;
-		Create HUD Text(Event Player, Hero Icon String(Hero(Bastion)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(
+		Create HUD Text(Event Player, Hero Icon String(Hero(Bastion)), Custom String("Level 2"), Null, Left, 8, Color(Purple), Color(
 			Purple), Color(White), Visible To and String, Default Visibility);
 		Event Player.Bastion_Level2_Icon = Last Text ID;
 		Wait(6, Ignore Condition);
@@ -3441,6 +3455,7 @@ rule("... Roadhog | Level 2 | First Awoken")
 		Event Player.Roadhog_Power >= 1200;
 		Is Alive(Event Player) == True;
 		Is Hero Being Played(Hero(Roadhog), All Teams) == True;
+		Event Player.Roadhog_Level2 != 100;
 	}
 
 	actions
@@ -3448,7 +3463,7 @@ rule("... Roadhog | Level 2 | First Awoken")
 		Global.Total_Level2_Roadhog += 1;
 		Destroy HUD Text(Event Player.Roadhog_Level2_Icon);
 		Event Player.Roadhog_Level2 = 100;
-		Create HUD Text(Event Player, Hero Icon String(Hero(Roadhog)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(
+		Create HUD Text(Event Player, Hero Icon String(Hero(Roadhog)), Custom String("Level 2"), Null, Left, 8, Color(Purple), Color(
 			Purple), Color(White), Visible To and String, Default Visibility);
 		Event Player.Roadhog_Level2_Icon = Last Text ID;
 		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Roadhog is now level 2!", Event Player, Hero Icon String(Hero(
@@ -3535,7 +3550,7 @@ rule("Wrecking Ball")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} Ultimate = Invisible and Very Strong for 12 sec", Null, Hero Icon String(Hero(
+		Create HUD Text(Event Player, Custom String("{1} ULT = Invisible Mine Deployment \r\nfor 18 secs", Null, Hero Icon String(Hero(
 			Wrecking Ball))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Wait(0.250, Ignore Condition);
@@ -3722,10 +3737,10 @@ rule("... Orisa | Level 2")
 	actions
 	{
 		Heal(Event Player, Event Player, 10000);
-		Create HUD Text(Event Player, Hero Icon String(Hero(Orisa)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(Purple),
+		Create HUD Text(Event Player, Hero Icon String(Hero(Orisa)), Custom String("Level 2"), Null, Left, 8, Color(Purple), Color(Purple),
 			Color(White), Visible To and String, Default Visibility);
 		Event Player.Orisa_Level2_Icon = Last Text ID;
-		Global.Speed_Force_Timer += 1;
+		Global.Total_Level2_Orisa += 1;
 		Set Max Health(Event Player, 200);
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
@@ -3890,7 +3905,7 @@ rule("... Soldier 76 | Level 2")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Hero Icon String(Hero(Soldier: 76)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(
+		Create HUD Text(Event Player, Hero Icon String(Hero(Soldier: 76)), Custom String("Level 2"), Null, Left, 8, Color(Purple), Color(
 			Purple), Color(White), Visible To and String, Default Visibility);
 		Event Player.Soldier76_Level2_Icon = Last Text ID;
 		Create HUD Text(Event Player, Custom String("You teleport to victims' location on every kill"), Custom String(""), Null, Left, 2,
@@ -3987,8 +4002,8 @@ rule("Winston")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} Hunt the low health heroes, Ultimate = Insane Rage", Null, Hero Icon String(Hero(
-			Winston))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1} Hunt the low health heroes,\r\n Ultimate = Harambe Rage", Null, Hero Icon String(
+			Hero(Winston))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 	}
 }
@@ -4049,20 +4064,25 @@ rule("Lúcio")
 
 	actions
 	{
-		Wait(0.250, Ignore Condition);
+		Destroy HUD Text(Event Player.Hud_Text_3);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Destroy HUD Text(Event Player.HUD_Text_1);
-		Create HUD Text(Event Player, Custom String("{1} Ultimate = BOOP all players in your facing direction", Null, Hero Icon String(
-			Hero(Lúcio))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Wait(0.250, Ignore Condition);
+		Create HUD Text(Event Player, Custom String("{1} Ult = Enemies in range of where you \r\nult fall through the map", Null,
+			Hero Icon String(Hero(Lúcio))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String,
+			Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Create HUD Text(Event Player, Custom String(""), Custom String(
-			"1. Environmental kills give you 50% shields equal to the maximum health of the hero killed"), Null, Left, 3, Color(White),
+			"1. Environmental kills give you 30% shields equal to the maximum health of the hero killed"), Null, Left, 3, Color(White),
 			Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
+		Create HUD Text(Event Player, Custom String(""), Custom String("2. Increased damage while wall riding"), Null, Left, 4, Color(
+			White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Event Player.Hud_Text_3 = Last Text ID;
 	}
 }
 
-disabled rule("Lucio Damage Boost")
+rule("Lucio Damage Boost")
 {
 	event
 	{
@@ -4074,7 +4094,7 @@ disabled rule("Lucio Damage Boost")
 	conditions
 	{
 		Is On Wall(Event Player) == True;
-		Is On Ground(Event Player) == False;
+		disabled Is On Ground(Event Player) == False;
 	}
 
 	actions
@@ -4083,7 +4103,7 @@ disabled rule("Lucio Damage Boost")
 	}
 }
 
-disabled rule("Lucio Damage Reduction")
+rule("Lucio Damage Reduction")
 {
 	event
 	{
@@ -4121,7 +4141,7 @@ rule("Lucio Shield Boop")
 
 	actions
 	{
-		Add Health Pool To Player(Attacker, Shields, Max Health(Event Player) * 0.500, False, True);
+		Add Health Pool To Player(Attacker, Shields, Max Health(Event Player) * 0.300, False, True);
 	}
 }
 
@@ -4163,7 +4183,7 @@ rule("... Lúcio | Push Victim Around")
 	}
 }
 
-rule("... Lúcio | The Ultimate Push")
+disabled rule("... Lúcio | The Ultimate Push")
 {
 	event
 	{
@@ -4197,7 +4217,7 @@ rule("... Lúcio | The Ultimate Push")
 	}
 }
 
-rule("... Lúcio | The Ultimate BOOP")
+disabled rule("... Lúcio | The Ultimate BOOP")
 {
 	event
 	{
@@ -4225,6 +4245,47 @@ rule("... Lúcio | The Ultimate BOOP")
 		disabled Set Status(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player, Stunned, 2);
 		Global.Lucio_Ultimate = False;
 		Global.LucioUltPlayer = Null;
+	}
+}
+
+rule("... Lúcio | Ultimate ->Break it down")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Using Ultimate(Event Player) == True;
+		Is On Ground(Event Player) == True;
+		disabled Global.Lucio_Ultimate == True;
+	}
+
+	actions
+	{
+		Wait(0.250, Ignore Condition);
+		Event Player.LucioNearByArray = Null;
+		disabled Global.Lucio_Ultimate = False;
+		disabled Global.LucioUltPlayer = Null;
+		Event Player.LucioUltPlayerPos = Position Of(Event Player);
+		Modify Player Variable(Event Player, LucioNearByArray, Append To Array, Filtered Array(Players Within Radius(
+			Event Player.LucioUltPlayerPos, 25, Opposite Team Of(Team Of(Event Player)), Surfaces),
+			Current Array Element != Event Player && True == True));
+		Big Message(Event Player.LucioNearByArray, Custom String("{0}{1} just dropped the beat and the floor with it.", Hero Icon String(
+			Hero(Lúcio)), Event Player));
+		Big Message(Event Player, Custom String("{0}You just dropped the beat and the floor with it.", Hero Icon String(Hero(Lúcio)),
+			Event Player));
+		Wait(0.700, Ignore Condition);
+		Communicate(Event Player.LucioNearByArray, No);
+		Communicate(Event Player, Sorry);
+		disabled Set Gravity(Event Player, 0);
+		Disable Movement Collision With Environment(Filtered Array(Event Player.LucioNearByArray, True == True), True);
+		Set Environment Credit Player(Filtered Array(Event Player.LucioNearByArray, True == True), Event Player);
+		disabled Set Status(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player, Stunned, 2);
+		Wait(15, Abort When False);
 	}
 }
 
@@ -4949,8 +5010,8 @@ rule("Zenyatta")
 		Create HUD Text(Event Player, Custom String("{1} Balls relocate victims", Null, Hero Icon String(Hero(Zenyatta))), Null, Null,
 			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-		Create HUD Text(Event Player, Custom String("Ultimate makes victims walk in your facing direction"), Null, Null, Left, 2, Color(
-			Blue), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("Ultimate makes victims walk\r\nin your facing direction {1}", Null, Icon String(
+			Dizzy)), Null, Null, Left, 2, Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
 	}
 }
@@ -5144,7 +5205,7 @@ rule("... Ana | First Ultimate | Become Level 2")
 		Destroy HUD Text(Event Player.Ana_Level2_Icon);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Event Player.Ana_Level2 = 100;
-		Create HUD Text(Event Player, Hero Icon String(Hero(Ana)), Custom String("Level 2"), Null, Left, 4, Color(Purple), Color(Purple),
+		Create HUD Text(Event Player, Hero Icon String(Hero(Ana)), Custom String("Level 2"), Null, Left, 8, Color(Purple), Color(Purple),
 			Color(White), Visible To and String, Default Visibility);
 		Event Player.Ana_Level2_Icon = Last Text ID;
 		Wait(0.250, Ignore Condition);
@@ -5229,7 +5290,7 @@ rule("... Ana | Level 2 | Re-activate Ultimate |Limit Ammo| Abilities")
 		disabled Set Reload Enabled(Event Player, False);
 		disabled Set Ammo(Event Player, 0, 0);
 		Destroy HUD Text(Event Player.Ana_Sleep_Poison_Hud);
-		Set Ability 1 Enabled(Event Player, False);
+		disabled Set Ability 1 Enabled(Event Player, False);
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Create HUD Text(Event Player, Custom String("{1} Level 2", Null, Hero Icon String(Hero(Ana))), Custom String(
@@ -5324,7 +5385,7 @@ rule("... Ana | Level 2 | Re-activate Ultimate | NOT ULTING")
 		Set Ammo(Event Player, 0, 100);
 		Set Max Ammo(Event Player, 0, 100);
 		Set Damage Dealt(Event Player, 10);
-		Set Ability 1 Enabled(Event Player, True);
+		disabled Set Ability 1 Enabled(Event Player, True);
 		"se"
 		Set Ability Cooldown(Event Player, Button(Ability 2), 2);
 		Wait(10, Abort When False);
@@ -5381,11 +5442,11 @@ rule("Widowmaker")
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} All your damage instantly kills", Null, Hero Icon String(Hero(Widowmaker))), Null,
-			Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1} ULT = Shoot through walls", Null, Hero Icon String(Hero(Widowmaker))), Null, Null,
+			Left, 1, Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-		Create HUD Text(Event Player, Null, Custom String("1. You can shoot through walls while ulting"), Null, Left, 2, Color(White),
-			Color(White), Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Null, Custom String("1. All your damage instantly kills"), Null, Left, 2, Color(White), Color(White),
+			Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
 		disabled Create HUD Text(Event Player, Custom String("{2} Share your intel with everyone else:", Null, Hero Icon String(Hero(Widowmaker)),
 			Icon String(Exclamation Mark)), Event Player.Widowmaker_ThirdEye, Null, Left, 2, Color(Blue), Color(Blue), Color(White),
@@ -5637,7 +5698,7 @@ rule("... Junkrat - Burning DOT")
 					Event Player, Hero Icon String(Hero(Junkrat)), Event Player.ClosestJunkrat), Null, Null, Top, 2, Color(Turquoise), Color(
 					White), Color(White), Visible To and String, Default Visibility);
 				Event Player.Junkrat_Burn_Warning = Last Text ID;
-				Start Damage Over Time(Event Player, Event Player.ClosestJunkrat, 1, 10);
+				Start Damage Over Time(Event Player, Event Player.ClosestJunkrat, 1, 20);
 				Wait(1, Ignore Condition);
 				Destroy HUD Text(Event Player.Junkrat_Burn_Warning);
 			End;
@@ -5726,9 +5787,9 @@ rule("Tracer")
 		Set Player Health(Event Player, Max Health(Event Player) - Max Health(Event Player) * 0.900);
 		disabled Damage(Event Player, Null, Max Health(Event Player) * 0.225);
 		disabled Set Player Health(Event Player, 15);
-		Set Ability 2 Enabled(Event Player, False);
-		Wait(4, Ignore Condition);
-		Set Ability 2 Enabled(Event Player, True);
+		disabled Set Ability 2 Enabled(Event Player, False);
+		disabled Wait(4, Ignore Condition);
+		disabled Set Ability 2 Enabled(Event Player, True);
 	}
 }
 
@@ -5774,7 +5835,7 @@ rule("... Tracer | Speed Force Enter")
 		Event Player.Tracer_Speed_Force == True;
 		Is Button Held(Event Player, Button(Interact)) == True;
 		Global.Speed_Force_Timer == 0;
-		Global.TracerSpeedForcePlayer == Null;
+		Global.TracerSpeedForcePlayer == 0;
 	}
 
 	actions
@@ -5818,7 +5879,7 @@ rule("... Tracer | Speed Force Enter")
 		disabled Set Player Health(Event Player, Max Health(Event Player) - Max Health(Event Player) * 0.900);
 		Event Player.Tracer_Health_Pack_Heals = 0;
 		disabled Damage(Event Player, Null, Max Health(Event Player) * 0.225);
-		Global.TracerSpeedForcePlayer = Null;
+		Global.TracerSpeedForcePlayer = 0;
 	}
 }
 
@@ -5888,9 +5949,9 @@ rule("Test | Dummy")
 
 	actions
 	{
-		Create Dummy Bot(Hero(Genji), All Teams, -1, Event Player, Vector(0, 0, 0));
+		disabled Create Dummy Bot(Hero(Reaper), All Teams, -1, Event Player, Vector(0, 0, 0));
 		disabled Create Dummy Bot(Hero(Ana), All Teams, -1, Event Player, Vector(0, 0, 0));
-		disabled Create Dummy Bot(Hero(Roadhog), All Teams, -1, Event Player, Vector(0, 0, 0));
+		Create Dummy Bot(Hero(Roadhog), All Teams, -1, Event Player, Vector(0, 0, 0));
 	}
 }
 
@@ -6008,7 +6069,7 @@ rule("Test | Show Player Health")
 	}
 }
 
-disabled rule("Test | Player S*icide")
+rule("Test | Player S*icide")
 {
 	event
 	{
@@ -6183,7 +6244,7 @@ rule("General | Armor Buff for low health heroes")
 
 	actions
 	{
-		Add Health Pool To Player(Event Player, Armor, 20, True, True);
+		Add Health Pool To Player(Event Player, Armor, 50, True, True);
 	}
 }
 
@@ -6199,13 +6260,56 @@ rule("General | Give some heroes head starts for ULT")
 	conditions
 	{
 		Is Game In Progress == True;
-		Array Contains(Array(Hero(Ashe), Hero(Mercy), Hero(Torbjörn), Hero(Sigma), Hero(Zarya)), Hero Of(Event Player)) == True;
+		Array Contains(Array(Hero(Ashe), Hero(Mercy), Hero(Torbjörn), Hero(Sigma), Hero(Zarya), Hero(Lúcio)), Hero Of(Event Player))
+			== True;
 		Is Alive(Event Player) == True;
 	}
 
 	actions
 	{
 		Wait(1, Ignore Condition);
-		Set Ultimate Charge(Event Player, 45);
+		Set Ultimate Charge(Event Player, 65);
+	}
+}
+
+disabled rule("Bap Lifesteal")
+{
+	event
+	{
+		Player Took Damage;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Hero Of(Attacker) == Hero(Baptiste);
+	}
+
+	actions
+	{
+		Heal(Attacker, Event Player, Event Damage);
+		Log To Inspector(Custom String("{0} Damage {1}", Event Player, Event Damage));
+	}
+}
+
+disabled rule("Bap Lifesteal")
+{
+	event
+	{
+		Player Took Damage;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Hero Of(Attacker) == Hero(Lúcio);
+	}
+
+	actions
+	{
+		disabled Heal(Attacker, Event Player, Event Damage);
+		Log To Inspector(Custom String("{0} Damage {1}", Event Player, Event Damage));
 	}
 }
