@@ -1,5 +1,18 @@
 # Changelog
 - Notable changes from the original version of this mode
+## [1.7.1] 3/06/2021
+### Changed
+- **Lucio**: Ult range decreased to 10% and HUD wording updated
+- **Lucio**: Spawns with Ult
+- **Lucio**: HUD 
+- **Mei**: Damage increased to 150%
+- **Mercy**: Starting ult charge now 55%
+- **McCree**: Flashbang cooldown reduced to 30%
+- **Winston**: Ult duration increased to 300%
+- **Zarya**: Black Hole Effect Added with Ult
+- **Zarya**: Briefly unkillable during ult to try and prevent the game bugging out
+- **Zenyata**: Ammo reduced to 2
+
 
 ## [1.7.0] 3/02/2021
 ### Added

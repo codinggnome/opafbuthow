@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.7.0"
+		Description: "Description: \"Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.7.1"
 	}
 
 	lobby
@@ -250,6 +250,7 @@ settings
 				Quick Melee: Off
 				Soundwave Cooldown Time: 5%
 				Soundwave Knockback Scalar: 300%
+				Spawn With Ultimate Ready: On
 				Ultimate Generation - Combat Sound Barrier: 300%
 				Ultimate Generation - Passive Sound Barrier: 300%
 				Ultimate Generation Sound Barrier: 10%
@@ -259,7 +260,7 @@ settings
 			{
 				Combat Roll Cooldown Time: 0%
 				Damage Dealt: 220%
-				Flashbang Cooldown Time: 50%
+				Flashbang Cooldown Time: 30%
 				Health: 150%
 				Jump Vertical Speed: 200%
 				No Ammunition Requirement: On
@@ -272,6 +273,7 @@ settings
 				Blizzard Freeze Minimum: 35%
 				Blizzard Freeze Rate Scalar: 500%
 				Cryo-Freeze Cooldown Time: 50%
+				Damage Dealt: 150%
 				Freeze Stacking: On
 				Health: 90%
 				Ice Wall Cooldown Time: 0%
@@ -524,7 +526,7 @@ settings
 				No Ammunition Requirement: On
 				Primal Rage Melee Knockback Scalar: 300%
 				Quick Melee: Off
-				Ultimate Duration: 250%
+				Ultimate Duration: 300%
 				Ultimate Generation - Combat Primal Rage: 150%
 				Ultimate Generation - Passive Primal Rage: 150%
 				Ultimate Generation Primal Rage: 200%
@@ -704,6 +706,7 @@ variables
 		73: Rein_Train_Player_Cam
 		74: Sigma_Ult_Player_Max_Speed
 		75: Sigma_Ult_Player_Max_Height_Temp
+		76: ZaryaUltSound
 		78: General_Player_For_Count_One
 		79: Hud_Text_4
 		80: Ashe_Bob_Out
@@ -818,6 +821,7 @@ rule("General | Player Reset at Death")
 	actions
 	{
 		If(Event Player == Global.Zarya_Ultimate_User);
+			Destroy Effect(Event Player.ZaryaBlackHoleEffect);
 			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 			Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 			Set Ability Cooldown(Event Player, Button(Ability 1), 5);
@@ -830,7 +834,7 @@ rule("General | Player Reset at Death")
 			disabled Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 			disabled Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
 			disabled Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
-			Global.Zarya_Ultimate_User = Null;
+			Global.Zarya_Ultimate_User = False;
 			Destroy HUD Text(Event Player.ZayraUltHud);
 		End;
 		If(Event Player == Global.Lava_Event_Player);
@@ -886,6 +890,7 @@ rule("General | Player Left Game")
 	actions
 	{
 		If(Event Player == Global.Zarya_Ultimate_User);
+			Destroy Effect(Event Player.ZaryaBlackHoleEffect);
 			disabled Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 			Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 			Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
@@ -896,7 +901,7 @@ rule("General | Player Left Game")
 			Global.ZaryaUltReset = True;
 			disabled Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
 			disabled Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
-			Global.Zarya_Ultimate_User = Null;
+			Global.Zarya_Ultimate_User = False;
 			Destroy HUD Text(Global.Zarya_Ultimate_HUD);
 		End;
 		If(Event Player == Global.Lava_Event_Player);
@@ -937,6 +942,7 @@ rule("General | Subroutine | Player Reset")
 
 	actions
 	{
+		Set Ultimate Charge(Event Player, 0);
 		Set Projectile Speed(Event Player, 100);
 		Enable Movement Collision With Environment(Event Player);
 		Set Max Health(Event Player, 100);
@@ -2838,7 +2844,7 @@ rule("... Zarya | Ultimate | Multi Zayra /Clean up0")
 
 	actions
 	{
-		Wait Until(Global.Zarya_Ultimate_User != Event Player, 15);
+		Wait Until(Global.Zarya_Ultimate_User != Event Player, 12);
 		Log To Inspector(Custom String("{0} - Backup Zarya Clean up Ran", Event Player));
 		Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 		Set Ability Cooldown(Event Player, Button(Ability 1), 5);
@@ -2850,6 +2856,7 @@ rule("... Zarya | Ultimate | Multi Zayra /Clean up0")
 		Destroy HUD Text(Event Player.ZayraUltHud);
 		Wait(3, Ignore Condition);
 		Global.ZaryaUltReset = True;
+		Destroy Effect(Event Player.ZaryaBlackHoleEffect);
 	}
 }
 
@@ -2871,23 +2878,28 @@ rule("... Zarya | Ultimate | Super Succ | Max Charge")
 	{
 		"pray the other zarya is done"
 		Wait Until(Global.ZaryaUltReset == True, 20);
+		Set Status(Event Player, Null, Phased Out, 11);
 		Global.ZaryaUltReset = False;
 		Global.ZaryaStartMoving = True;
 		disabled Set Ability Charge(Event Player, Button(Primary Fire), 100);
+		Destroy Effect(Event Player.ZaryaBlackHoleEffect);
+		Remove Health Pool From Player(Event Player.ZayraHealthPoolMod);
 		Set Ability Cooldown(Event Player, Button(Ability 1), 1);
 		Wait(1, Ignore Condition);
 		Press Button(Event Player, Button(Ability 1));
-		disabled Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Black), Event Player, 5);
-		disabled Create Effect(All Players(All Teams), Bad Aura, Color(Black), Event Player, 1, Visible To Position and Radius);
+		disabled Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Black), Event Player, 100);
+		disabled Event Player.ZaryaUltSound = Last Created Entity;
+		Create Effect(All Players(All Teams), Bad Aura, Color(Black), Event Player, 50, Visible To Position and Radius);
+		Event Player.ZaryaBlackHoleEffect = Last Created Entity;
 		Event Player.ZayraUltIsCharged = True;
-		Add Health Pool To Player(Event Player, Shields, 4500, False, True);
+		Add Health Pool To Player(Event Player, Shields, 3750, False, True);
 		Event Player.ZayraHealthPoolMod = Last Created Health Pool;
 		disabled Event Player.Zarya_Ultimate_Warning_HUD = 10;
 		disabled Wait(1, Ignore Condition);
 		disabled Damage(Event Player, Event Player, 500);
 		Start Forcing Throttle(Remove From Array(All Players(All Teams), Event Player), 0, 0, 0, 0, 0, 0);
 		Set Gravity(Remove From Array(All Players(All Teams), Event Player), 0);
-		Event Player.ZaryaBlackHoleEffect = Last Created Entity;
+		Clear Status(Event Player, Phased Out);
 		Press Button(Event Player, Button(Ability 1));
 		disabled Global.Zarya_Ultimate_User = Event Player;
 		Wait(10, Ignore Condition);
@@ -2896,7 +2908,9 @@ rule("... Zarya | Ultimate | Super Succ | Max Charge")
 		Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
 		Global.Zarya_Ultimate_User = False;
 		Global.ZaryaStartMoving = False;
-		disabled Destroy Effect(Event Player.ZaryaBlackHoleEffect);
+		Destroy Effect(Event Player.ZaryaBlackHoleEffect);
+		disabled Destroy Effect(Event Player.ZaryaUltSound);
+		Remove Health Pool From Player(Event Player.ZayraHealthPoolMod);
 	}
 }
 
@@ -2962,8 +2976,10 @@ rule("... Zarya | Ultimate | Moving to Zarya")
 
 	actions
 	{
+		Log To Inspector(Custom String("Zarya Ult Waiting"));
 		"pray the other zarya is done"
 		Wait Until(Global.ZaryaStartMoving == True, 20);
+		Log To Inspector(Custom String("Zarya Still Moving"));
 		Start Accelerating(Event Player, Global.Zarya_Ultimate_User - Event Player, 200, 300, To World, Direction Rate and Max Speed);
 	}
 }
@@ -4070,7 +4086,7 @@ rule("Lúcio")
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} Ult = Enemies in range of where you \r\nult fall through the map", Null,
+		Create HUD Text(Event Player, Custom String("{1} Ult = Enemies within 10m of where you \r\nult fall through the map", Null,
 			Hero Icon String(Hero(Lúcio))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String,
 			Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
@@ -4185,71 +4201,6 @@ rule("... Lúcio | Push Victim Around")
 	}
 }
 
-disabled rule("... Lúcio | The Ultimate Push")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Lúcio;
-	}
-
-	conditions
-	{
-		Is Using Ultimate(Event Player) == True;
-	}
-
-	actions
-	{
-		Global.LucioUltPlayer = Event Player;
-		Big Message(All Players(All Teams), Custom String("{1} {0}'s ULTIMATE BOOP!", Event Player, Hero Icon String(Hero(Lúcio))));
-		Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 0);
-		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 0);
-		Apply Impulse(All Players(All Teams), Up, 30, To World, Cancel Contrary Motion);
-		Wait(0.016, Ignore Condition);
-		Global.Lucio_Ultimate = True;
-		Wait(5, Ignore Condition);
-		Abort If(Global.Lucio_Ultimate == False);
-		Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-		Apply Impulse(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Facing Direction Of(Event Player),
-			200, To World, Cancel Contrary Motion);
-		Global.Lucio_Ultimate = False;
-		Wait(1, Ignore Condition);
-		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-	}
-}
-
-disabled rule("... Lúcio | The Ultimate BOOP")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Lúcio;
-	}
-
-	conditions
-	{
-		Is Using Ultimate(Event Player) == True;
-		Is On Ground(Event Player) == True;
-		Global.Lucio_Ultimate == True;
-	}
-
-	actions
-	{
-		Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-		Apply Impulse(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Facing Direction Of(Event Player),
-			200, To World, Cancel Contrary Motion);
-		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 0);
-		Wait(1, Ignore Condition);
-		Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-		Set Environment Credit Player(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player);
-		disabled Set Status(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player, Stunned, 2);
-		Global.Lucio_Ultimate = False;
-		Global.LucioUltPlayer = Null;
-	}
-}
-
 rule("... Lúcio | Ultimate ->Break it down")
 {
 	event
@@ -4274,7 +4225,7 @@ rule("... Lúcio | Ultimate ->Break it down")
 		disabled Global.LucioUltPlayer = Null;
 		Event Player.LucioUltPlayerPos = Position Of(Event Player);
 		Modify Player Variable(Event Player, LucioNearByArray, Append To Array, Filtered Array(Players Within Radius(
-			Event Player.LucioUltPlayerPos, 25, Opposite Team Of(Team Of(Event Player)), Surfaces),
+			Event Player.LucioUltPlayerPos, 10, Opposite Team Of(Team Of(Event Player)), Surfaces),
 			Current Array Element != Event Player && True == True));
 		Big Message(Event Player.LucioNearByArray, Custom String("{0}{1} just dropped the beat and the floor with it.", Hero Icon String(
 			Hero(Lúcio)), Event Player));
@@ -5015,6 +4966,8 @@ rule("Zenyatta")
 		Create HUD Text(Event Player, Custom String("Ultimate makes victims walk\r\nin your facing direction {1}", Null, Icon String(
 			Dizzy)), Null, Null, Left, 2, Color(Blue), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_2 = Last Text ID;
+		Set Ammo(Event Player, 0, 2);
+		Set Max Ammo(Event Player, 0, 2);
 	}
 }
 
@@ -5285,6 +5238,7 @@ rule("... Ana | Level 2 | Re-activate Ultimate |Limit Ammo| Abilities")
 
 	actions
 	{
+		Big Message(Event Player, Custom String("{0} ALL DAMAGE SLEEPS AND KILLS. GO GRANDMA GO!", Hero Icon String(Hero(Ana))));
 		Set Damage Dealt(Event Player, 0.001);
 		Set Ammo(Event Player, 0, 7);
 		Set Max Ammo(Event Player, 0, 7);
@@ -6262,15 +6216,18 @@ rule("General | Give some heroes head starts for ULT")
 	conditions
 	{
 		Is Game In Progress == True;
-		Array Contains(Array(Hero(Ashe), Hero(Mercy), Hero(Torbjörn), Hero(Sigma), Hero(Zarya), Hero(Lúcio)), Hero Of(Event Player))
-			== True;
+		Array Contains(Array(Hero(Ashe), Hero(Mercy), Hero(Torbjörn), Hero(Sigma), Hero(Zarya)), Hero Of(Event Player)) == True;
 		Is Alive(Event Player) == True;
 	}
 
 	actions
 	{
 		Wait(1, Ignore Condition);
-		Set Ultimate Charge(Event Player, 65);
+		If(Hero Of(Event Player) == Hero(Mercy));
+			Set Ultimate Charge(Event Player, 55);
+		Else;
+			Set Ultimate Charge(Event Player, 65);
+		End;
 	}
 }
 
