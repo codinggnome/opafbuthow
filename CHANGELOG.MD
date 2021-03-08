@@ -1,10 +1,28 @@
 # Changelog
 - Notable changes from the original version of this mode
+
+## [1.7.2] 3/08/2021
+### Added
+- **General** Added a host only server load hud
+### Changed
+- **General** Changed several HUD items to be gender non specific and other general updates
+- **Brig**: Damage increased to 275%
+- **Brig**: Healing Received increased to 275%
+- **Junkrat**: Added increased passive damage while ulting and changed HUDs for that too Small Messages
+- **Lucio**:  Healing Received increased to 20%
+- **Lucio**: Changed the wait condition in ult to try and prevent double firing
+- **McCree**:Ult generation increased to 350%
+- **Moira**: Healing Dealt/Received increased to 60%
+- **Moira**: Fade's cooldown changes based on power level. <500  =1  seconds,>=500  && <=1000 = 1 seconds,>1000  && <2000 = 6 Seconds,>2000 = 30 seconds. Health restrictions removed
+- **Reaper**: Ammo clip size increased to 300%
+- **Torb**: Ammo clip size increased to 300%
+- **Zenyata**: Added a teleport death spot for Hollywood
+- **Zarya**: Abort code added to try and prevent ult from breaking game.
+
 ## [1.7.1] 3/06/2021
 ### Changed
 - **Lucio**: Ult range decreased to 10% and HUD wording updated
 - **Lucio**: Spawns with Ult
-- **Lucio**: HUD 
 - **Mei**: Damage increased to 150%
 - **Mercy**: Starting ult charge now 55%
 - **McCree**: Flashbang cooldown reduced to 30%
