@@ -1,7 +1,17 @@
 # Changelog
 - Notable changes from the original version of this mode
 
-## [1.7.2] 3/08/2021
+## [1.7.3] 3/08/2021
+### Changed
+- **General** Changed several HUD items to be gender non specific and other general updates
+- **Ana**: HUD Updates
+- **Sigma**: HUD Updates
+- **Sigma**: Fixed issue where fall damage would not consistently apply.
+- **Sigma**: Increased fall damage to 10% for armored/shielded heros,15% for everyone else and for those who barely went up to 10
+- **Zenyata**: Updated Teleport text and Zen now says Goodbye
+- **Zenyata**: Changed Hollywood teleport location as players were landing and getting stuck in the theatre.
+
+## [1.7.2] 3/07/2021
 ### Added
 - **General** Added a host only server load hud
 ### Changed

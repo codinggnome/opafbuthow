@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.7.2"
+		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.7.3"
 	}
 
 	lobby
@@ -26,7 +26,9 @@ settings
 				Blizzard World
 				Dorado
 				Eichenwalde
+				Hollywood
 				King's Row
+				Paris
 			}
 		}
 
@@ -716,6 +718,7 @@ variables
 		82: Widow_Sights_Icon
 		83: Junkrat_Burn_Warning
 		84: Ashe_Bob_Invis
+		85: SigmaUltPlayerArray
 		86: Tracer_Health_Pack_Heals
 		87: Trace_Space_Force_Started
 		88: Tracer_HuD_Interact
@@ -729,6 +732,7 @@ variables
 		96: PlayerSelfRespawnCount
 		97: MoiraBallSpamTest
 		98: DebugPos
+		99: SigmaArrayCounter
 		100: ZayraUltIsCharged
 		101: ZayraHealthPoolMod
 		102: ZayraUltHud
@@ -2269,11 +2273,13 @@ rule("... Sigma | Sigma Controls Gravity Now!")
 
 	actions
 	{
+		Event Player.SigmaUltPlayerArray = Null;
+		Event Player.SigmaArrayCounter = 0;
 		Destroy HUD Text(Global.SIGMA_ULT_HUD);
 		Global.Sigma_Test = True;
-		Create HUD Text(All Players(All Teams), Custom String("{1} {0} controls gravity! Suddenly fall damage matters", Event Player,
-			Hero Icon String(Hero(Sigma))), Null, Null, Top, 1, Color(Red), Color(White), Color(White), Visible To and String,
-			Default Visibility);
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} controls gravity! Suddenly fall damage matters! {2}", Event Player,
+			Hero Icon String(Hero(Sigma)), Ability Icon String(Hero(Sigma), Button(Ultimate))), Null, Null, Top, 1, Color(Red), Color(
+			White), Color(White), Visible To and String, Default Visibility);
 		Global.SIGMA_ULT_HUD = Last Text ID;
 		Global.Sigma_Ulting = True;
 		Global.Sigma_Player_Ulting = Event Player;
@@ -2282,8 +2288,14 @@ rule("... Sigma | Sigma Controls Gravity Now!")
 		Press Button(All Living Players(All Teams), Button(Jump));
 		Apply Impulse(All Living Players(All Teams), Up, 70, To Player, Cancel Contrary Motion);
 		Wait(0.500, Ignore Condition);
-		Filtered Array(All Players(All Teams), Current Array Element != Event Player).Sigma_Ult_Player_Max_Height = Altitude Of(
-			Filtered Array(All Players(All Teams), Current Array Element != Event Player));
+		Modify Player Variable(Event Player, SigmaUltPlayerArray, Append To Array, Filtered Array(All Living Players(All Teams),
+			Current Array Element != Event Player));
+		For Player Variable(Event Player, SigmaArrayCounter, 0, Count Of(Event Player.SigmaUltPlayerArray), 1);
+			disabled Log To Inspector(Custom String("{0}{1}", Event Player.SigmaArrayCounter,
+				Event Player.SigmaUltPlayerArray[Event Player.SigmaArrayCounter]));
+			Event Player.SigmaUltPlayerArray[Event Player.SigmaArrayCounter].Sigma_Ult_Player_Max_Height = Altitude Of(
+				Event Player.SigmaUltPlayerArray[Event Player.SigmaArrayCounter]);
+		End;
 		Set Gravity(All Living Players(All Teams), 0);
 		Set Move Speed(All Living Players(All Teams), 3);
 		Wait(4, Ignore Condition);
@@ -2305,10 +2317,12 @@ rule("... Sigma | Sigma Controls Gravity Now!")
 		disabled Global.Sigma_Player_Ulting = Null;
 		Global.Sigma_Test = False;
 		Destroy HUD Text(Global.SIGMA_ULT_HUD);
+		disabled Filtered Array(All Players(All Teams), Current Array Element != Event Player).Sigma_Ult_Player_Max_Height = Altitude Of(
+			Filtered Array(All Players(All Teams), Current Array Element != Event Player));
 	}
 }
 
-rule("...Sigma | Fall Damage")
+rule("...Sigma | Fall Damage Calculator")
 {
 	event
 	{
@@ -2323,7 +2337,7 @@ rule("...Sigma | Fall Damage")
 		disabled Event Player.Sigma_Ult_Player_Max_Height < -10;
 		disabled Event Player.Sigma_Ult_Player_Max_Height == True;
 		disabled Global.Sigma_Ulting != Event Player;
-		(Event Player.Sigma_Ult_Player_Max_Height >= 6) == True;
+		(Event Player.Sigma_Ult_Player_Max_Height >= 3) == True;
 		Horizontal Speed Of(Event Player) == True;
 		Global.Sigma_Ulting == True;
 		Event Player != Global.Sigma_Player_Ulting;
@@ -2335,20 +2349,28 @@ rule("...Sigma | Fall Damage")
 		If(Event Player.Sigma_Ult_Player_Max_Height > 6);
 			"damage mitigation for armor"
 			If(Max Health Of Type(Event Player, Armor) > 1);
-				Damage(Event Player, Global.Sigma_Player_Ulting, Max Health(Event Player) * 0.060);
+				disabled Log To Inspector(Custom String("{0} Armor..Current Health Before {1}", Event Player, Health(Event Player)));
+				Damage(Event Player, Global.Sigma_Player_Ulting, Max Health(Event Player) * 0.100);
+				disabled Log To Inspector(Custom String("{0} Armor..Current Health After {1}", Event Player, Health(Event Player)));
 			"damage mitigation for shields"
 			Else If(Max Health Of Type(Event Player, Shields) > 1);
-				Damage(Event Player, Global.Sigma_Player_Ulting, Max Health(Event Player) * 0.060);
+				disabled Log To Inspector(Custom String("{0} Shields..Current Health Before {1}", Event Player, Health(Event Player)));
+				Damage(Event Player, Global.Sigma_Player_Ulting, Max Health(Event Player) * 0.100);
+				disabled Log To Inspector(Custom String("{0} Shields..Current Health Before {1}", Event Player, Health(Event Player)));
 			Else;
-				Damage(Event Player, Global.Sigma_Player_Ulting, Max Health(Event Player) * 0.120);
+				disabled Log To Inspector(Custom String("{0} Nothing..Current Health Before {1}", Event Player, Health(Event Player)));
+				Damage(Event Player, Global.Sigma_Player_Ulting, Max Health(Event Player) * 0.150);
+				disabled Log To Inspector(Custom String("{0} Nothing..Current Health After {1}", Event Player, Health(Event Player)));
 			End;
 		Else;
-			Damage(Event Player, Global.Sigma_Player_Ulting, 1);
+			disabled Log To Inspector(Custom String("{0} Barely Moved..Current Health Before {1}", Event Player, Health(Event Player)));
+			Damage(Event Player, Global.Sigma_Player_Ulting, 10);
+			disabled Log To Inspector(Custom String("{0} Barely Moved..Current Health After {1}", Event Player, Health(Event Player)));
 		End;
 	}
 }
 
-rule("...Sigma | Fall Damage2")
+rule("...Sigma | Ult Clean Up")
 {
 	event
 	{
@@ -2846,32 +2868,6 @@ rule("Zarya")
 	}
 }
 
-disabled rule("Rule 183")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Zarya;
-	}
-
-	conditions
-	{
-		Is Using Ultimate(Event Player) == False;
-		disabled (Global.Zarya_Ultimate_User != Event Player && Global.Zarya_Ultimate_User != False) == True;
-	}
-
-	actions
-	{
-		If(Global.Zarya_Ultimate_User != Event Player && Global.Zarya_Ultimate_User != False);
-			Big Message(Event Player, Custom String("Because of bugs only one Zarya ult at a time. Sorry {0}", Icon String(Happy)));
-			Disallow Button(Event Player, Button(Ultimate));
-		Else;
-			Allow Button(Event Player, Button(Ultimate));
-		End;
-	}
-}
-
 rule("... Zarya | Ultimate | Super Succ Warning HUD")
 {
 	event
@@ -2986,26 +2982,6 @@ rule("... Zarya | Ultimate | Super Succ | Max Charge")
 		Destroy Effect(Event Player.ZaryaBlackHoleEffect);
 		disabled Destroy Effect(Event Player.ZaryaUltSound);
 		Remove Health Pool From Player(Event Player.ZayraHealthPoolMod);
-	}
-}
-
-disabled rule("... Zarya | Ultimate | Reset")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Zarya;
-	}
-
-	conditions
-	{
-		Is Using Ultimate(Event Player) == False;
-	}
-
-	actions
-	{
-		Set Ability Cooldown(Event Player, Button(Ability 1), 5);
 	}
 }
 
@@ -5069,16 +5045,19 @@ rule("... Zenyatta | Relocate Victim")
 	{
 		Event Player.Zenyatta_Power += 10;
 		Abort If(Is Dead(Victim));
-		Big Message(Victim, Custom String("{1} You got hit by {0}! ... Enjoy the view!", Event Player, Hero Icon String(Hero(Zenyatta))));
+		Communicate(Event Player, Goodbye);
+		Big Message(Victim, Custom String("{1} You got hit by {0}! ... Your setback is only temporary!", Event Player, Hero Icon String(
+			Hero(Zenyatta))));
 		Set Gravity(Victim, 500);
 		Event Player.HUD_Text_Start_Game_1 = 6;
 		Play Effect(Victim, Bad Pickup Effect, Color(Red), Victim, 2);
 		Teleport(Filtered Array(Victim, Current Map == Map(King's Row)), Vector(-139.643, -5.305, 19.736));
 		Teleport(Filtered Array(Victim, Current Map == Map(Petra)), Vector(39.164, -2.849, 52.752));
 		If(Current Map == Map(Hollywood));
-			Teleport(Filtered Array(Victim, Current Map == Map(Hollywood)), Vector(-40.720, 120.150, -181));
+			Teleport(Filtered Array(Victim, Current Map == Map(Hollywood)), Vector(-60, 120.150, -181));
 			Wait(0.250, Ignore Condition);
 			Set Facing(Victim, Vector(-0.300, -0.050, -0.950), To World);
+			Disable Movement Collision With Environment(Victim, True);
 		End;
 		Teleport(Filtered Array(Victim, Current Map == Map(Paris)), Vector(-103.462, 21.254, -20.372));
 		Teleport(Filtered Array(Victim, Current Map == Map(Château Guillard)), Vector(183.502, 21.910, 36.580));
@@ -5343,9 +5322,8 @@ rule("... Ana | Level 2 | Re-activate Ultimate |Limit Ammo| Abilities")
 			Left, 2, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
 		Create HUD Text(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Custom String(
-			"{1} {0}'s Ana is nano'd and Level 2. Beware of fatal sleep poison! {2}", Event Player, Hero Icon String(Hero(Ana)),
-			Ability Icon String(Hero(Widowmaker), Button(Ability 2))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White),
-			Visible To and String, Default Visibility);
+			"{1} {0} is nano'd and Level 2. Beware of fatal sleep poison! {2}", Event Player, Hero Icon String(Hero(Ana)), Icon String(
+			Poison)), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.Ana_Sleep_Poison_Hud = Last Text ID;
 		Wait(6, Ignore Condition);
 		Destroy HUD Text(Event Player.Ana_Sleep_Poison_Hud);
@@ -5377,9 +5355,9 @@ rule("... Ana | Level 2 | Connected Damage")
 		disabled Start Damage Modification(Victim, Event Player, 50, None);
 		Wait(0.100, Ignore Condition);
 		Destroy HUD Text(Event Player.Ana_Sleep_Poison_Hud);
-		Create HUD Text(Event Player, Custom String("{0}{1} has poisoned you. You're gonna die in your sleep {2}!", Attacker,
-			Hero Icon String(Hero(Ana)), Ability Icon String(Hero(Ana), Button(Ability 1))), Null, Null, Top, 1, Color(Red), Color(Red),
-			Color(White), Visible To and String, Default Visibility);
+		Create HUD Text(Event Player, Custom String("{1}{0} has poisoned you. You're gonna die soon! {2}", Attacker, Hero Icon String(Hero(
+			Ana)), Icon String(Poison)), Null, Null, Top, 1, Color(Red), Color(Red), Color(White), Visible To and String,
+			Default Visibility);
 		Event Player.Ana_Sleep_Poison_Hud = Last Text ID;
 		disabled Damage(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player, 1);
 		disabled Heal(Event Player, Null, 1000);
@@ -6010,9 +5988,9 @@ rule("Test | Dummy")
 
 	actions
 	{
-		disabled Create Dummy Bot(Hero(Reaper), All Teams, -1, Event Player, Vector(0, 0, 0));
+		Create Dummy Bot(Hero(Reinhardt), All Teams, -1, Event Player, Vector(0, 0, 0));
 		Create Dummy Bot(Hero(Ana), All Teams, -1, Event Player, Vector(0, 0, 0));
-		disabled Create Dummy Bot(Hero(Roadhog), All Teams, -1, Event Player, Vector(0, 0, 0));
+		Create Dummy Bot(Hero(Zarya), All Teams, -1, Event Player, Vector(0, 0, 0));
 	}
 }
 
@@ -6060,33 +6038,6 @@ disabled rule("Test | Change Hero")
 	}
 }
 
-disabled rule("Winston - Super Monkey Punch")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		(Hero Of(Event Player) == Hero(Winston) || Hero Being Duplicated(Event Player) == Hero(Winston)) == True;
-		Is Using Ultimate(Event Player) == False;
-	}
-
-	actions
-	{
-		If(Is Meleeing(Event Player) == True);
-			Set Damage Dealt(Event Player, 10000);
-		Else;
-			Set Damage Dealt(Event Player, 100);
-		End;
-		Wait(0.075, Ignore Condition);
-		Loop If Condition Is True;
-	}
-}
-
 rule("Test | Activate Ultimate")
 {
 	event
@@ -6124,9 +6075,9 @@ rule("Test | Show Player Health")
 
 	actions
 	{
-		Create In-World Text(All Players(All Teams), Custom String("Health {0} Distance from Host {1}", Health(Event Player),
-			Distance Between(Position Of(Event Player), Position Of(Host Player))), Event Player, 1, Clip Against Surfaces,
-			Visible To Position and String, Color(White), Default Visibility);
+		Create In-World Text(All Players(All Teams), Custom String("{2} - Health {0} Distance from Host {1}", Custom String("{0}/{1}",
+			Health(Event Player), Max Health(Event Player)), Distance Between(Position Of(Event Player), Position Of(Host Player)),
+			Event Player), Event Player, 1, Clip Against Surfaces, Visible To Position and String, Color(White), Default Visibility);
 	}
 }
 
@@ -6240,34 +6191,7 @@ disabled rule("Lava Debugger")
 	}
 }
 
-disabled rule("Rule 182 trying to exclude dups")
-{
-	event
-	{
-		Subroutine;
-		HeroSelection;
-	}
-
-	actions
-	{
-		Event Player.HeroesAllowed = Random Value In Array(All Heroes);
-		While(Array Contains(Array(Hero(Sigma), Hero(Zarya), Hero(Lúcio), Hero(Torbjörn)), Hero Of(Event Player.HeroesAllowed))
-			&& Filtered Array(Hero Of(Filtered Array(All Living Players(All Teams), Current Array Element != Event Player)),
-			Current Array Element != Hero Of(Event Player.HeroesAllowed)) == True);
-			Log To Inspector(Custom String("Game already contains {0} trying again", Hero Of(Event Player)));
-			Event Player.HeroesAllowed = Random Value In Array(All Heroes);
-			disabled While(Array Contains(Array(Hero(Sigma), Hero(Zarya), Hero(Lúcio), Hero(Torbjörn)), Hero Of(Event Player.HeroesAllowed))
-				&& Filtered Array(Hero Of(Filtered Array(All Living Players(All Teams), Current Array Element != Event Player)),
-				Current Array Element != Hero Of(Event Player.HeroesAllowed)) == True);
-			disabled While(Array Contains(Array(Hero(Sigma), Hero(Zarya), Hero(Lúcio), Hero(Torbjörn)), Hero Of(Event Player.HeroesAllowed))
-				&& Filtered Array(Hero Of(Filtered Array(All Living Players(All Teams), Current Array Element != Event Player)),
-				Current Array Element != Hero Of(Event Player.HeroesAllowed)) == True);
-		End;
-		Set Player Allowed Heroes(Event Player, Random Value In Array(Event Player.HeroesAllowed));
-	}
-}
-
-disabled rule("Reaper - Give Widow Sights")
+rule("Destroy All Bots")
 {
 	event
 	{
@@ -6278,54 +6202,14 @@ disabled rule("Reaper - Give Widow Sights")
 
 	conditions
 	{
-		disabled Hero Of(Event Player) != Hero(Reaper);
+		Is Button Held(Event Player, Button(Primary Fire)) == True;
+		Is Button Held(Event Player, Button(Melee)) == True;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Global.Debug == True;
 	}
 
 	actions
 	{
-		Start Forcing Player Outlines(Event Player, Filtered Array(All Living Players(All Teams), Hero Of(Event Player) == Hero(Reaper)),
-			True, Color(Red), Always);
-	}
-}
-
-disabled rule("Bap Lifesteal")
-{
-	event
-	{
-		Player Took Damage;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Attacker) == Hero(Baptiste);
-	}
-
-	actions
-	{
-		Heal(Attacker, Event Player, Event Damage);
-		Log To Inspector(Custom String("{0} Damage {1}", Event Player, Event Damage));
-	}
-}
-
-disabled rule("Bap Lifesteal")
-{
-	event
-	{
-		Player Took Damage;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		Hero Of(Attacker) == Hero(Lúcio);
-	}
-
-	actions
-	{
-		disabled Heal(Attacker, Event Player, Event Damage);
-		Log To Inspector(Custom String("{0} Damage {1}", Event Player, Event Damage));
+		Destroy All Dummy Bots;
 	}
 }
