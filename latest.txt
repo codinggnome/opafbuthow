@@ -1842,7 +1842,7 @@ rule("... Moira | Objective 500")
 
 	actions
 	{
-		Create HUD Text(All Players(All Teams), Custom String("{1} {0} is gaining in DMG Done each second. Don't let her live long!",
+		Create HUD Text(All Players(All Teams), Custom String("{1} {0} is gaining in DMG Done each second. Don't let them live long!",
 			Event Player, Hero Icon String(Hero(Moira))), Custom String(""), Null, Top, 2, Color(Red), Color(Red), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.HUD_Text_Warning = Last Text ID;
