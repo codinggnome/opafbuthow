@@ -975,7 +975,7 @@ rule("General | Subroutine | Player Reset")
 		Event Player.Orisa_Power = 0;
 		Event Player.Orisa_Power_Level2 = 0;
 		Event Player.Orisa_Level2_Ultimate_HUD = 0;
-		Set Ultimate Ability Enabled(Event Player, True);
+		disabled Set Ultimate Ability Enabled(Event Player, True);
 		disabled Set Ultimate Charge(Event Player, 0);
 		Event Player.Lava_Activated_Player = 0;
 		Event Player.Tracer_Speed_Force = 0;
@@ -2095,7 +2095,7 @@ rule("...Ashe | Invisible While Bob is out")
 			Ashe)), Ability Icon String(Hero(Ashe), Button(Ultimate))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White),
 			Visible To and String, Default Visibility);
 		Event Player.Ashe_Bob_Invis = Last Text ID;
-		Set Ultimate Ability Enabled(Event Player, False);
+		Set Ultimate Charge(Event Player, 0);
 		Create HUD Text(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Custom String(
 			"{1} {0} is invisible while Bob is alive. Kill Bob! {2}", Event Player, Hero Icon String(Hero(Ashe)), Ability Icon String(Hero(
 			Ashe), Button(Ultimate))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String,
@@ -2126,7 +2126,7 @@ rule("...Ashe | Bob is not out")
 		Destroy HUD Text(Event Player.Ashe_Bob_Out);
 		Set Invisible(Event Player, None);
 		disabled Clear Status(Event Player, Invincible);
-		Set Ultimate Ability Enabled(Event Player, True);
+		disabled Set Ultimate Ability Enabled(Event Player, True);
 	}
 }
 
