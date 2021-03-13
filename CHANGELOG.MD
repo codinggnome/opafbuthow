@@ -1,6 +1,15 @@
 # Changelog
 - Notable changes from the original version of this mode
 
+## [1.7.4] 3/13/2021
+### Changed
+- **Lucio**: Increased Lucio's ultimate to 20 meters
+- **Lucio**: Fixed a bug where Lucio's ultimate could hit targets in the air
+- **Reinhardt**:Fixed a bug where Reinhardt's shatter could hit targets in the air
+- **Torbjorn**: Changed how Torb's lava is created in an attempt to improve server performance issues.
+- **Torbjorn**: Fixed a bug that allowed multiple unkillable "Lava Gods"
+- **Zarya**: Attempting to improve Zarya ultimate cleanup and prevent player stuck issues
+
 ## [1.7.3] 3/08/2021
 ### Changed
 - **General** Changed several HUD items to be gender non specific and other general updates

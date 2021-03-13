@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh#2229's version by ThePwrBottom#1586 Unofficial version 1.7.3"
+		Description: "Play a random hero with unique enhanced abilities until you get killed by another player. Then it's time to discover the next. There may be bugs :D Fork of Kychahh's version by ThePwrBottom#1586. Unofficial version 1.7.4 - Updates and change log https://workshop.codes/H9J8T"
 	}
 
 	lobby
@@ -626,6 +626,7 @@ variables
 		29: Sigma_Ulting
 		30: Sigma_Player_Ulting
 		31: Lava_Effect_id
+		32: TorbLogHelper
 		33: SIGMA_ULT_HUD
 		34: Sigma_Test
 		35: LucioUltPlayer
@@ -705,13 +706,10 @@ variables
 		69: Reinhardt_Ring_Counter
 		70: Super_Punch_Cooldown
 		71: Reinhardt_Player_Pos
-		72: Rein_Pinned_By_Train
-		73: Rein_Train_Player_Cam
 		74: Sigma_Ult_Player_Max_Speed
 		75: Sigma_Ult_Player_Max_Height_Temp
 		76: ZaryaUltSound
 		77: HostServerLoad
-		78: General_Player_For_Count_One
 		79: Hud_Text_4
 		80: Ashe_Bob_Out
 		81: Widow_Warning_HUD
@@ -840,8 +838,8 @@ rule("General | Player Reset at Death")
 			disabled Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
 			disabled Stop Forcing Throttle(Remove From Array(All Players(All Teams), Event Player));
 			disabled Set Gravity(Remove From Array(All Players(All Teams), Event Player), 100);
-			Global.Zarya_Ultimate_User = False;
 			Destroy HUD Text(Event Player.ZayraUltHud);
+			Global.Zarya_Ultimate_User = False;
 		End;
 		If(Event Player == Global.Lava_Event_Player);
 			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
@@ -860,13 +858,6 @@ rule("General | Player Reset at Death")
 			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 			Global.Sigma_Ulting = False;
 		End;
-		If(Event Player == Global.LucioUltPlayer);
-			Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-			Global.LucioUltPlayer = Null;
-			Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-			Global.Lucio_Ultimate = Null;
-			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
-		End;
 		disabled Event Player.ZayraUltIsCharged = False;
 		If(Event Player == Global.TracerSpeedForcePlayer);
 			Set Slow Motion(100);
@@ -875,6 +866,21 @@ rule("General | Player Reset at Death")
 			Log To Inspector(Custom String("{0}{1} - Ult clean up run", Event Player, Hero Of(Event Player)));
 		End;
 		Call Subroutine(Player_Reset);
+	}
+}
+
+rule("Lava Loader")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(Global.Lava_Torbjorn_Activation == 1000 ? All Players(All Teams) : Null, Sphere, Color(Red),
+			Global.Lava_Position[Global.Lava_Rising_Array_Looper], Global.Lava_Sizes[Global.Lava_Rising_Array_Looper],
+			Visible To Position and Radius);
 	}
 }
 
@@ -921,12 +927,6 @@ rule("General | Player Left Game")
 			Set Gravity(All Players(All Teams), 100);
 			Destroy HUD Text(Global.SIGMA_ULT_HUD);
 			Set Move Speed(All Players(All Teams), 100);
-		End;
-		If(Event Player == Global.LucioUltPlayer);
-			Set Gravity(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
-			Global.LucioUltPlayer = Null;
-			Global.Lucio_Ultimate = Null;
-			Set Move Speed(Filtered Array(All Players(All Teams), Current Array Element != Event Player), 100);
 		End;
 		If(Event Player == Global.TracerSpeedForcePlayer);
 			Set Slow Motion(100);
@@ -980,14 +980,14 @@ rule("General | Subroutine | Player Reset")
 		Event Player.Lava_Activated_Player = 0;
 		Event Player.Tracer_Speed_Force = 0;
 		Event Player.Tracer_Speed_Force = False;
-		Destroy Icon(Last Created Entity);
+		disabled Destroy Icon(Last Created Entity);
 		Destroy Icon(Event Player.Orisa_Power_Icon);
-		If(Last Created Entity != Global.Lava_Effect_id);
-			Log To Inspector(Custom String("Destorying Lava {0} - Last Entity {1} Lava Id {2}", Event Player, Last Created Entity,
-				Global.Lava_Effect_id));
-			Destroy Effect(Last Created Entity);
-			Clear Status(Event Player, Hacked);
-		End;
+		disabled If(Last Created Entity != Global.Lava_Effect_id);
+		disabled Log To Inspector(Custom String("Destorying Lava {0} - Last Entity {1} Lava Id {2}", Event Player, Last Created Entity,
+			Global.Lava_Effect_id));
+		disabled Destroy Effect(Last Created Entity);
+		Clear Status(Event Player, Hacked);
+		disabled End;
 		Destroy Effect(Event Player.Genji_Ultimate_Effect);
 		Destroy Effect(Event Player.Bastion_Ultimate_Effect);
 		Stop Damage Modification(Event Player.Ana_Immunity);
@@ -1209,6 +1209,7 @@ rule("General | Lava King")
 		Event Player.Lava_Protection_God_Text = Last Text ID;
 		Event Player.Lava_Activated_Player = 6;
 		Wait Until(Event Player != Global.Lava_Event_Player, 99999);
+		Clear Status(Event Player, Invincible);
 		Destroy HUD Text(Event Player.Lava_Protection_God_Text);
 		Create HUD Text(Event Player, Custom String("YOU ARE NO LONGER THE LAVA GOD. GET OUT OF THE LAVA YOU FOOL!"), Null, Null, Top, 2,
 			Color(Orange), Color(Orange), Color(White), Visible To and String, Default Visibility);
@@ -1293,50 +1294,6 @@ rule("Doomfist")
 		Create HUD Text(Event Player, Custom String("{1} FIST THE WORLD", Null, Hero Icon String(Hero(Doomfist))), Null, Null, Left, 1,
 			Color(White), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
-	}
-}
-
-disabled rule("... Auto Target Punch")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		(Hero Of(Event Player) == Hero(Doomfist) || Hero Being Duplicated(Event Player) == Hero(Doomfist)) == True;
-	}
-
-	actions
-	{
-		disabled If(Is Button Held(Event Player, Button(Interact)) == True && Is Alive(Event Player) == True && Is Communicating Any Emote(
-			Event Player) == False && Has Status(Event Player, Hacked) == False && Has Status(Event Player, Knocked Down)
-			== False && Has Status(Event Player, Asleep) == False && Has Status(Event Player, Stunned) == False && Has Status(Event Player,
-			Frozen) == False);
-		disabled If(Event Player.Super_Punch_Cooldown == 0);
-		disabled For Player Variable(Event Player, General_Player_For_Count_One, 0, 15, 1);
-		disabled Apply Impulse(Event Player, Forward, 10, To Player, Cancel Contrary Motion);
-		disabled Apply Impulse(Event Player, Up, 1, To World, Cancel Contrary Motion);
-		disabled Play Effect(All Players(All Teams), Ring Explosion Sound, Color(White), Event Player, 100);
-		disabled Damage(Players Within Radius(Event Player, 5, Opposite Team Of(Team Of(Event Player)), Surfaces And Enemy Barriers), Event Player,
-			10);
-		disabled Wait(0.075, Ignore Condition);
-		disabled End;
-		disabled Event Player.Super_Punch_Cooldown = 6;
-		disabled End;
-		disabled End;
-		If(Is Firing Secondary(Event Player) == True);
-			Set Facing(Event Player, Direction Towards(Event Player, Player Closest To Reticle(Event Player, Opposite Team Of(Team Of(
-				Event Player)))), To World);
-		End;
-		disabled If(Is Button Held(Event Player, Button(Jump)) == True && Is Using Ability 2(Event Player) == True);
-		disabled Apply Impulse(Event Player, Up, 3, To World, Incorporate Contrary Motion);
-		disabled End;
-		Wait(0.075, Ignore Condition);
-		Loop If Condition Is True;
 	}
 }
 
@@ -2622,64 +2579,6 @@ rule("Reinhardt")
 	}
 }
 
-disabled rule("... Reinhardt | Choo Choo | Pin multiple enemies - via LemonAid#11644")
-{
-	event
-	{
-		Player Dealt Knockback;
-		All;
-		Reinhardt;
-	}
-
-	conditions
-	{
-		Event Ability == Button(Ability 1);
-		Has Status(Victim, Stunned) == False;
-	}
-
-	actions
-	{
-		Victim.Rein_Train_Player_Cam = Event Player;
-		Victim.Rein_Pinned_By_Train = True;
-		Start Camera(Victim, Ray Cast Hit Position(Eye Position(Event Player), Eye Position(Event Player) + Facing Direction Of(
-			Event Player) * -2, Null, Event Player, True), Eye Position(Event Player), 15);
-		Attach Players(Victim, Event Player, Vector(0, 0, 1));
-	}
-}
-
-disabled rule("... Reinhardt | Choo choo | LemonAid#11644")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		All;
-	}
-
-	conditions
-	{
-		Event Player.Rein_Pinned_By_Train == True;
-	}
-
-	actions
-	{
-		Set Status(Event Player, Null, Stunned, 3);
-		Wait Until(!Is Using Ability 1(Event Player.Rein_Train_Player_Cam), 99999);
-		Stop Camera(Event Player);
-		Clear Status(Event Player, Stunned);
-		If(Distance Between(Event Player.Rein_Train_Player_Cam, Ray Cast Hit Position(Position Of(Event Player.Rein_Train_Player_Cam)
-			+ Vector(0, 0.500, 0), Position Of(Event Player.Rein_Train_Player_Cam) + Vector(0, 0.500, 0) + Facing Direction Of(
-			Event Player.Rein_Train_Player_Cam) * 5, Null, All Players(All Teams), False)) <= 3);
-			Damage(Event Player, Event Player.Rein_Train_Player_Cam, 300);
-		End;
-		Wait(0.200, Ignore Condition);
-		Detach Players(Event Player);
-		Wait(0.250, Ignore Condition);
-		Event Player.Rein_Train_Player_Cam = Null;
-		Detach Players(Event Player);
-	}
-}
-
 rule("... Reinhardt | Ultimate | Settings - [D = Divisions] [R = Radius]  (from u/mitsiee on https://workshop.codes)")
 {
 	event
@@ -2762,16 +2661,18 @@ rule("... Reinhardt uses his ultimate (modified for FFA from u/mitsiee on https:
 			Event Player)), Surfaces)), Event Player.Reinhardt_Ring_Counter));
 		Damage(Filtered Array(Players Within Radius(Event Player.Reinhardt_Player_Pos, Event Player.Reinhardt_Ring_Counter * (
 			Global.Reinhardt_Radius / Global.Reinhardt_Divisions), All Teams, Surfaces),
-			Current Array Element != Event Player && Current Array Element.ReinHasBeenHit != True), Event Player,
-			100 / Global.Reinhardt_Divisions);
+			Current Array Element != Event Player && Is On Ground(Current Array Element)
+			== True && Current Array Element.ReinHasBeenHit != True), Event Player, 100 / Global.Reinhardt_Divisions);
 		Set Status(Filtered Array(Players Within Radius(Event Player.Reinhardt_Player_Pos, Event Player.Reinhardt_Ring_Counter * (
 			Global.Reinhardt_Radius / Global.Reinhardt_Divisions), All Teams, Surfaces),
 			Current Array Element != Event Player && Current Array Element != Has Status(Event Player, Knocked Down)
-			&& Current Array Element.ReinHasBeenHit != True), Event Player, Knocked Down, 4);
+			&& Current Array Element.ReinHasBeenHit != True && Is On Ground(Current Array Element) == True), Event Player, Knocked Down,
+			4);
 		Modify Player Variable(Event Player, ReinShatterArray, Append To Array, Filtered Array(Players Within Radius(
 			Event Player.Reinhardt_Player_Pos, Event Player.Reinhardt_Ring_Counter * (
 			Global.Reinhardt_Radius / Global.Reinhardt_Divisions), All Teams, Surfaces),
-			Current Array Element != Event Player && Current Array Element.ReinHasBeenHit != True));
+			Current Array Element != Event Player && Current Array Element.ReinHasBeenHit != True && Is On Ground(Current Array Element)
+			== True));
 		Log To Inspector(Custom String("after Current Health {0}{1}", Health(Players Within Radius(Event Player.Reinhardt_Player_Pos,
 			Event Player.Reinhardt_Ring_Counter * (Global.Reinhardt_Radius / Global.Reinhardt_Divisions), Opposite Team Of(Team Of(
 			Event Player)), Surfaces)), Event Player.Reinhardt_Ring_Counter));
@@ -2895,10 +2796,12 @@ rule("... Zarya | Ultimate | Super Succ Warning HUD")
 		Event Player.ZayraUltHud = Last Text ID;
 		Wait(10, Ignore Condition);
 		Destroy HUD Text(Event Player.ZayraUltHud);
+		Clear Status(Event Player, Unkillable);
+		Global.Zarya_Ultimate_User = False;
 	}
 }
 
-rule("... Zarya | Ultimate | Multi Zayra /Clean up0")
+rule("... Zarya | Ultimate | Multi Zayra /Clean up")
 {
 	event
 	{
@@ -2928,6 +2831,8 @@ rule("... Zarya | Ultimate | Multi Zayra /Clean up0")
 		Wait(3, Ignore Condition);
 		Global.ZaryaUltReset = True;
 		Destroy Effect(Event Player.ZaryaBlackHoleEffect);
+		Clear Status(Event Player, Unkillable);
+		Global.Zarya_Ultimate_User = False;
 	}
 }
 
@@ -2949,7 +2854,7 @@ rule("... Zarya | Ultimate | Super Succ | Max Charge")
 	{
 		"pray the other zarya is done"
 		Wait Until(Global.ZaryaUltReset == True, 20);
-		Set Status(Event Player, Null, Phased Out, 11);
+		Set Status(Event Player, Null, Unkillable, 11);
 		Global.ZaryaUltReset = False;
 		Global.ZaryaStartMoving = True;
 		disabled Set Ability Charge(Event Player, Button(Primary Fire), 100);
@@ -2970,8 +2875,8 @@ rule("... Zarya | Ultimate | Super Succ | Max Charge")
 		disabled Damage(Event Player, Event Player, 500);
 		Start Forcing Throttle(Remove From Array(All Players(All Teams), Event Player), 0, 0, 0, 0, 0, 0);
 		Set Gravity(Remove From Array(All Players(All Teams), Event Player), 0);
-		Clear Status(Event Player, Phased Out);
 		Press Button(Event Player, Button(Ability 1));
+		Clear Status(Event Player, Unkillable);
 		disabled Global.Zarya_Ultimate_User = Event Player;
 		Wait(10, Ignore Condition);
 		Stop Accelerating(Remove From Array(All Players(All Teams), Event Player));
@@ -3769,6 +3674,7 @@ rule("... Orisa | Player Notification Orisa Explosion")
 
 	actions
 	{
+		Destroy HUD Text(Event Player.Orisa_Kill_Warning_HUD);
 		Create HUD Text(All Players(All Teams), Custom String("{1} {2} {0} will kill everyone in:", Event Player, Hero Icon String(Hero(
 			Orisa)), Icon String(Radioactive)), Event Player.Orisa_Power, Null, Top, 1, Color(Red), Color(Red), Color(White),
 			Visible To and String, Default Visibility);
@@ -3828,6 +3734,7 @@ rule("... Orisa | Level 2")
 		Create HUD Text(Event Player, Custom String("{1} Level 2 | Stay alive long \r\nenough to win the game!", Null, Hero Icon String(
 			Hero(Orisa))), Null, Null, Left, 1, Color(Purple), Color(White), Color(White), Visible To and String, Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
+		Destroy HUD Text(Event Player.Orisa_Level2_Warning_HUD);
 		Create HUD Text(All Players(All Teams), Custom String("{1} {0}'s Orisa is now level 2! Kill her fast!", Event Player,
 			Hero Icon String(Hero(Orisa))), Null, Null, Top, 2, Color(Turquoise), Color(White), Color(White), Visible To and String,
 			Default Visibility);
@@ -4147,7 +4054,7 @@ rule("Lúcio")
 		Destroy HUD Text(Event Player.HUD_Text_2);
 		Destroy HUD Text(Event Player.HUD_Text_1);
 		Wait(0.250, Ignore Condition);
-		Create HUD Text(Event Player, Custom String("{1} Ult = Enemies within 15m of where you \r\nult fall through the map", Null,
+		Create HUD Text(Event Player, Custom String("{1} Ult = Enemies within 20m of where you \r\nult fall through the map", Null,
 			Hero Icon String(Hero(Lúcio))), Null, Null, Left, 1, Color(White), Color(White), Color(White), Visible To and String,
 			Default Visibility);
 		Event Player.HUD_Text_1 = Last Text ID;
@@ -4286,8 +4193,9 @@ rule("... Lúcio | Ultimate ->Break it down")
 		disabled Global.LucioUltPlayer = Null;
 		Event Player.LucioUltPlayerPos = Position Of(Event Player);
 		Modify Player Variable(Event Player, LucioNearByArray, Append To Array, Filtered Array(Players Within Radius(
-			Event Player.LucioUltPlayerPos, 15, Opposite Team Of(Team Of(Event Player)), Surfaces),
-			Current Array Element != Event Player && Is Alive(Current Array Element) == True));
+			Event Player.LucioUltPlayerPos, 20, Opposite Team Of(Team Of(Event Player)), Surfaces),
+			Current Array Element != Event Player && Is Alive(Current Array Element) == True && Is On Ground(Current Array Element)
+			== True));
 		Big Message(Event Player.LucioNearByArray, Custom String("{0}{1} just dropped the beat and the floor with it!", Hero Icon String(
 			Hero(Lúcio)), Event Player));
 		Big Message(Event Player, Custom String("{0}You just dropped the beat and the floor with it!", Hero Icon String(Hero(Lúcio)),
@@ -4296,8 +4204,8 @@ rule("... Lúcio | Ultimate ->Break it down")
 		Communicate(Event Player.LucioNearByArray, No);
 		Communicate(Event Player, Sorry);
 		disabled Set Gravity(Event Player, 0);
-		Disable Movement Collision With Environment(Filtered Array(Event Player.LucioNearByArray, True == True), True);
-		Set Environment Credit Player(Filtered Array(Event Player.LucioNearByArray, True == True), Event Player);
+		Disable Movement Collision With Environment(Event Player.LucioNearByArray, True);
+		Set Environment Credit Player(Event Player.LucioNearByArray, Event Player);
 		disabled Set Status(Filtered Array(All Players(All Teams), Current Array Element != Event Player), Event Player, Stunned, 2);
 		Wait(10, Ignore Condition);
 	}
@@ -4361,6 +4269,7 @@ rule("... Torbjörn | Ultimate")
 
 	actions
 	{
+		Log To Inspector(Custom String("TORB ULT"));
 		Global.Lava_Torbjorn_Activation = 1000;
 		Global.Lava_Event_Player = Event Player;
 		Destroy Icon(Global.Lava_Event_Player.Lava_Event_Lava_King_Icon);
@@ -4398,16 +4307,16 @@ rule("... Torbjörn | Lava Rising | Map: Petra")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(2.097, -123.500, 9.112));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 120, Absolute Value(0.300), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Destroy Effect(Global.Lava_Effect_id);
+		disabled Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4435,16 +4344,15 @@ rule("... Torbjörn | Lava Rising | Map: King's Row")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(-93.792, -102.041, -46.070));
 		Modify Global Variable(Lava_Sizes, Append To Array, 95);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 118, Absolute Value(0.300), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 95, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4463,6 +4371,8 @@ rule("... Torbjörn | Lava Rising | Map: B-World")
 
 	actions
 	{
+		disabled Global.TorbLogHelper = Random Integer(0, 15);
+		disabled Log To Inspector(Custom String("Entering Lava Land {0}", Global.TorbLogHelper));
 		Create HUD Text(Filtered Array(All Players(All Teams), Current Array Element != Global.Lava_Event_Player), Custom String(
 			"{1} Watch out for lava! {0}", Global.Lava_Event_Player != Null ? Custom String(
 			"{0} is the Lava God and \r\nis immune to damage while standing in lava.", Global.Lava_Event_Player) : Custom String(
@@ -4472,17 +4382,16 @@ rule("... Torbjörn | Lava Rising | Map: B-World")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(-54.072, -101.265, 90.685));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 107, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Wait(7, Ignore Condition);
-		Destroy Effect(Global.Lava_Effect_id);
+		disabled Log To Inspector(Custom String("Leaving Lava Land {0}", Global.TorbLogHelper));
 	}
 }
 
@@ -4510,17 +4419,15 @@ rule("... Torbjörn | Lava Rising | Map: B-World Winter")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(-54.072, -101.265, 90.685));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 107, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Wait(7, Ignore Condition);
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4548,17 +4455,15 @@ rule("... Torbjörn | Lava Rising | Map: Château Guillard")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(206.260, -101.455, 84.316));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 112, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Wait(7, Ignore Condition);
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4586,16 +4491,15 @@ rule("... Torbjörn | Lava Rising | Map: Hollywood")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(8.295, -100.707, -48.145));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 107.400, Absolute Value(0.300), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4624,18 +4528,15 @@ rule("... Torbjörn | Lava Rising | Map: Paris")
 		disabled Modify Global Variable(Lava_Position, Append To Array, Vector(-97, -5, -85));
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 115, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Destroy Effect(Global.Lava_Effect_id);
-		"Original"
-		disabled Modify Global Variable(Lava_Position, Append To Array, Vector(-106.531, -97.455, -58.976));
 	}
 }
 
@@ -4663,17 +4564,16 @@ rule("... Torbjörn | Lava Rising | Map: Eichenwalde")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(68.082, -96.269, -81.329));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
-			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Create Effect(Global.Lava_Torbjorn_Activation == 1000 ? All Players(All Teams) : Null, Sphere, Color(Red),
+			Global.Lava_Position[Global.Lava_Rising_Array_Looper], Global.Lava_Sizes[Global.Lava_Rising_Array_Looper],
+			Visible To Position and Radius);
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 115, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Wait(7, Ignore Condition);
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4702,18 +4602,15 @@ rule("... Torbjörn | Lava Rising | Map: Kanezaka")
 		disabled Modify Global Variable(Lava_Position, Append To Array, Vector(-97, -5, -85));
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 115, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Destroy Effect(Global.Lava_Effect_id);
-		"Original"
-		disabled Modify Global Variable(Lava_Position, Append To Array, Vector(-106.531, -97.455, -58.976));
 	}
 }
 
@@ -4741,17 +4638,15 @@ rule("... Torbjörn | Lava Rising | Map: Dorado")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(118.871, -90.281, 22.735));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 106, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Wait(7, Ignore Condition);
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4779,16 +4674,15 @@ rule("... Torbjörn | Lava Rising | Map: Hanamura")
 		Global.Lava_HUD_Warning_Timer = 60;
 		Modify Global Variable(Lava_Position, Append To Array, Vector(12.741, -104.769, -48.970));
 		Modify Global Variable(Lava_Sizes, Append To Array, 100);
-		Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
+		disabled Create Effect(All Players(All Teams), Sphere, Color(Red), Global.Lava_Position[Global.Lava_Rising_Array_Looper],
 			Global.Lava_Sizes[Global.Lava_Rising_Array_Looper], Visible To Position and Radius);
-		Global.Lava_Effect_id = Last Created Entity;
+		disabled Global.Lava_Effect_id = Last Created Entity;
 		Chase Global Variable At Rate(Lava_Sizes, 107, Absolute Value(0.200), Destination and Rate);
 		Wait(60, Ignore Condition);
 		Chase Global Variable At Rate(Lava_Sizes, 100, Absolute Value(2), Destination and Rate);
 		Global.Lava_Torbjorn_Activation = 0;
 		Destroy HUD Text(Global.Lava_HUD_Warning);
 		Global.Lava_Event_Player = Null;
-		Destroy Effect(Global.Lava_Effect_id);
 	}
 }
 
@@ -4876,7 +4770,7 @@ rule("... Torbjörn | Lava King - Unkillable")
 		Set Damage Dealt(Event Player, 500);
 		Set Status(Event Player, Null, Invincible, 999991);
 		Wait Until(Event Player != Global.Lava_Event_Player, 99999);
-		Clear Status(Event Player, Unkillable);
+		Clear Status(Event Player, Invincible);
 	}
 }
 
@@ -4947,7 +4841,7 @@ rule("... Torbjörn | Lava - Text Warning: 60 Seconds Lava Rising")
 	{
 		Global.Lava_HUD_Warning_Timer -= 1;
 		Wait(1, Ignore Condition);
-		Loop;
+		Loop If(Global.Lava_HUD_Warning_Timer >= 0);
 		disabled Global.Lava_Torbjorn_Activation = 0;
 	}
 }
@@ -5639,27 +5533,6 @@ rule("... Tracer - Health Pack Collection")
 	}
 }
 
-disabled rule("...Widow | Remove Icon")
-{
-	event
-	{
-		Ongoing - Each Player;
-		All;
-		Widowmaker;
-	}
-
-	conditions
-	{
-		Is Using Ultimate(Event Player) == False;
-	}
-
-	actions
-	{
-		Destroy Icon(Event Player.Widow_Sights_Icon);
-		Event Player.Widow_Sights_Icon = Null;
-	}
-}
-
 rule("Junkrat")
 {
 	event
@@ -5988,8 +5861,8 @@ rule("Test | Dummy")
 
 	actions
 	{
-		Create Dummy Bot(Hero(Reinhardt), All Teams, -1, Event Player, Vector(0, 0, 0));
-		Create Dummy Bot(Hero(Ana), All Teams, -1, Event Player, Vector(0, 0, 0));
+		disabled Create Dummy Bot(Hero(Reinhardt), All Teams, -1, Event Player, Vector(0, 0, 0));
+		disabled Create Dummy Bot(Hero(Pharah), All Teams, -1, Event Player, Vector(0, 0, 0));
 		Create Dummy Bot(Hero(Zarya), All Teams, -1, Event Player, Vector(0, 0, 0));
 	}
 }
@@ -6211,5 +6084,30 @@ rule("Destroy All Bots")
 	actions
 	{
 		Destroy All Dummy Bots;
+	}
+}
+
+disabled rule("Rule 179")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Hero Of(Event Player) == Hero(Pharah);
+		Is Dummy Bot(Event Player) == True;
+	}
+
+	actions
+	{
+		Start Holding Button(Event Player, Button(Jump));
+		Wait(2, Ignore Condition);
+		Stop Holding Button(Event Player, Button(Jump));
+		Wait(1, Ignore Condition);
+		Loop;
 	}
 }
